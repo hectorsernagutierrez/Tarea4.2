@@ -1,0 +1,141 @@
+@using PersonahectorsOntology;
+@using TesauropersonahectorsOntology;
+@using PeliculahectorsOntology;
+@using PeliculahectorsOntology;
+@using PeliculahectorsOntology;
+@using GnossBase;
+@model ResourceViewModel
+@{
+	ResourceModel FichaDocumento = Model.Resource;
+	CommunityModel Comunidad = Html.GetComunidad();
+	UserIdentityModel IdentidadActual = Html.GetIdentidadActual();
+	Html.AddBodyClass(" PersonModel ");
+	if (FichaDocumento.ItemLinkedFotoVersion != 0 && !string.IsNullOrEmpty(FichaDocumento.ItemLinked.ToString()) && FichaDocumento.ItemLinked != Guid.Empty)
+	{
+	string urlPersonalizacion = $"{Html.GetBaseUrlContent()}/{Es.Riam.Util.UtilArchivos.ContentOntologias}/Archivos/{FichaDocumento.ItemLinked.ToString().Substring(0, 3)}";
+	Html.GetListaJS().Add($"{urlPersonalizacion}/{FichaDocumento.ItemLinked.ToString()}.js?v= {FichaDocumento.ItemLinkedFotoVersion}");
+	Html.GetListaCSS().Add($"{urlPersonalizacion}/{FichaDocumento.ItemLinked.ToString()}.css?v= {FichaDocumento.ItemLinkedFotoVersion}");
+	}
+	SemanticResourceModel semCmsModel = Model.SemanticFrom;
+	 GnossOCBase.LanguageEnum idiomaUsuario = (GnossOCBase.LanguageEnum)Enum.Parse(typeof(GnossOCBase.LanguageEnum), Html.GetUtilIdiomas().LanguageCode.ToLower());
+	Person pPerson = new Person(semCmsModel,idiomaUsuario);
+}
+<div class="row">
+<div class="col01 col col-12 col-lg-9">
+<div typeof="http://schema.org/Person:person">
+<div class="contentGroup contenidoPrincipal">
+<div class="group title">
+</div>
+</div>
+<div class="group content semanticView">
+<div class="group group_info">
+<div class="contentGroup">
+@if(pPerson.Schema_image!=null)
+{
+<div>
+		<strong>@pPerson.GetLabel(nameof(pPerson.Schema_image),idiomaUsuario)</strong>
+<span class="values">
+		@foreach(object prop in pPerson.Schema_image)
+		{
+			<p property="@pPerson.GetPropertyURI(nameof(pPerson.Schema_image))"> @prop </p>
+		}
+</span>
+</div>
+}
+@if(!string.IsNullOrEmpty(pPerson.Schema_name))
+{
+<div>
+		<strong>@pPerson.GetLabel(nameof(pPerson.Schema_name),idiomaUsuario)</strong>
+<span class="values">
+		<p property="@pPerson.GetPropertyURI(nameof(pPerson.Schema_name))"> @pPerson.Schema_name[(int)idiomaUsuario] </p>
+</span>
+</div>
+}
+@if(pPerson.Schema_birthDate!=null)
+{
+<div>
+	PintarEpocaPath(pPerson.Schema_birthDate,idiomaUsuario);
+</div>
+}
+@if(pPerson.Try_directorOf!=null)
+{
+<div>
+	@foreach(Movie prop in pPerson.Try_directorOf)
+	{
+		PintarMovie(prop,idiomaUsuario);
+	}
+</div>
+}
+@if(pPerson.Try_actorOf!=null)
+{
+<div>
+	@foreach(Movie prop in pPerson.Try_actorOf)
+	{
+		PintarMovie(prop,idiomaUsuario);
+	}
+</div>
+}
+@if(pPerson.Try_authorOf!=null)
+{
+<div>
+	@foreach(Movie prop in pPerson.Try_authorOf)
+	{
+		PintarMovie(prop,idiomaUsuario);
+	}
+</div>
+}
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+@functions
+{
+ void PintarEpocaPath(EpocaPath pEpocaPath,GnossOCBase.LanguageEnum idiomaUsuario, Observation pObservation){
+<div typeof="http://try.gnoss.com/EpocaPath:epocapath">
+<div class="contentGroup contenidoPrincipal">
+<div class="group title">
+</div>
+</div>
+<div class="group content semanticView">
+<div class="group group_info">
+<div class="contentGroup">
+@if(pEpocaPath.Try_epocaNode!=null)
+{
+<div>
+	@foreach(Concept prop in pEpocaPath.Try_epocaNode)
+	{
+		PintarConcept(prop,idiomaUsuario);
+	}
+</div>
+}
+</div>
+</div>
+</div>
+
+</div>
+
+}
+}
+@functions
+{
+void PintarMovie(Movie pMovie, GnossOCBase.LanguageEnum idiomaUsuario) {
+
+if(pMovie.Schema_name[idiomaUsuario]!=null)
+{
+<div>
+		<strong>@pMovie.GetLabel(nameof(pMovie.Schema_name),idiomaUsuario)</strong>
+<span>
+<p property ="@pMovie.GetPropertyURI(nameof(pMovie.Schema_name))"> @pMovie.Schema_name[idiomaUsuario] </p>
+</span>
+</div>
+}
+}
+void PintarConcept(Concept pConcept, GnossOCBase.LanguageEnum idiomaUsuario) {
+
+}
+}
+}
