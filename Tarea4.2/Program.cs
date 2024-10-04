@@ -99,3 +99,40 @@ catch (Exception)
 
 #endregion Carga de personas (PRINCIPAL)
 
+#region Modificación de personas (PRINCIPAL)
+
+string uri = "";
+
+//Obtención del id de la persona cargada en la comunidad
+string pOntology = "personahectors";
+string select = string.Empty, where = string.Empty;
+select += $@"SELECT *";
+where += $@" WHERE {{ ";
+where += $@"?s ?p ?o.";
+where += $@"FILTER(?o LIKE 'Persona Prueba')";
+where += $@"}}";
+
+
+SparqlObject resultadoQuery = mResourceApi.VirtuosoQuery(select, where, pOntology);
+//Si está ya en el grafo, obtengo la URI
+if (resultadoQuery != null && resultadoQuery.results != null && resultadoQuery.results.bindings != null && resultadoQuery.results.bindings.Count > 0 && resultadoQuery.results.bindings.FirstOrDefault()?.Keys.Count > 0)
+{
+    foreach (var item in resultadoQuery.results.bindings)
+    {
+        uri = item["s"].value;
+    }
+}
+
+//Obtención de los dos IDs a través de la URI
+string[] partes = uri.Split('/', '_');
+
+string resourceId = partes[5];
+string articleID = partes[6];
+
+Person personaActor1Modificado = new Person();
+personaActor1Modificado.Schema_name.Add(GnossBase.GnossOCBase.LanguageEnum.es, "Paco Tous");
+
+mResourceApi.ModifyComplexOntologyResource(personaActor1Modificado.ToGnossApiResource(mResourceApi, new List<string>() { "Cine 1" }, new Guid(resourceId), new Guid(articleID)), false, true);
+
+#endregion Modificación de personas (PRINCIPAL)
+
