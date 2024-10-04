@@ -80,3 +80,22 @@ catch (Exception)
 }
 #endregion Carga de géneros
 
+
+#region Carga de personas (PRINCIPAL)
+{
+    mResourceApi.ChangeOntology("personahectors.owl");
+    Person personActor1 = new Person();
+    personActor1.Schema_name.Add(GnossBase.GnossOCBase.LanguageEnum.es, "Persona Prueba");
+    // personActor1.Schema_name = "Actor1";
+    //personActor1.Try_birthPlace = buscarUbicacionPorNombre("España", mResourceApi);
+    /*
+        Guid guid1 = new Guid("");
+        Guid guid2 = new Guid("");
+        ComplexOntologyResource resorceLoad = personActor1.ToGnossApiResource(mResourceApi, null, guid1, guid2);
+    */
+    ComplexOntologyResource resorceLoad = personActor1.ToGnossApiResource(mResourceApi, new List<string>() { "Categoria1" }, Guid.NewGuid(), Guid.NewGuid());
+    mResourceApi.LoadComplexSemanticResource(resorceLoad);
+}
+
+#endregion Carga de personas (PRINCIPAL)
+
