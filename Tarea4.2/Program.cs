@@ -27,3 +27,5 @@ foreach (var guidUsuario in mCommunityApi.GetCommunityInfo().users)
     //string nombrePrimerUsuario = primerUsuario.Value.user_short_name;
 }
 //Cambio contra la rama principal
+
+Console.WriteLine("hol");
