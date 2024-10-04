@@ -26,3 +26,4 @@ foreach (var guidUsuario in mCommunityApi.GetCommunityInfo().users)
     //KeyValuePair<Guid, Userlite> primerUsuario = mUserApi.GetUsersByIds(new List<Guid>() { guidUsuario }).FirstOrDefault();
     //string nombrePrimerUsuario = primerUsuario.Value.user_short_name;
 }
+//Cambio contra la rama principal
