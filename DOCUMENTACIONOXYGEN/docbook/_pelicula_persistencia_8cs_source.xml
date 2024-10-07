@@ -1,0 +1,369 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="__pelicula_persistencia_8cs_source" xml:lang="en-US">
+<title>PeliculaPersistencia.cs</title>
+<indexterm><primary>C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs</primary></indexterm>
+Go to the documentation of this file.<programlisting linenumbering="unnumbered"><anchor xml:id="__pelicula_persistencia_8cs_source_1l00001"/>00001 <emphasis role="comment">/*</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00002"/>00002 <emphasis role="comment">&#32;*&#32;Autor:Hector&#32;Serna&#32;Gutierrez</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00003"/>00003 <emphasis role="comment">&#32;*&#32;Tarea&#32;4.2</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00004"/>00004 <emphasis role="comment">&#32;*&#32;version&#32;1.0</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00005"/>00005 <emphasis role="comment">&#32;*&#32;Ultima&#32;mod&#32;07/10/2024</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00006"/>00006 <emphasis role="comment">&#32;*&#32;Contacto:&#32;hectorserna@gnos.com</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00007"/>00007 <emphasis role="comment">&#32;*&#32;Documento:&#32;PeliculaPersistencia</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00008"/>00008 <emphasis role="comment">&#32;*/</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00009"/>00009 <emphasis role="keyword">using&#32;</emphasis>GenerohectorsOntology;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00010"/>00010 <emphasis role="keyword">using&#32;</emphasis>Gnoss.ApiWrapper.Model;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00011"/>00011 <emphasis role="keyword">using&#32;</emphasis>Gnoss.ApiWrapper;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00012"/>00012 <emphasis role="keyword">using&#32;</emphasis>Newtonsoft.Json;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00013"/>00013 <emphasis role="keyword">using&#32;</emphasis>PeliculahectorsOntology;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00014"/>00014 <emphasis role="keyword">using&#32;</emphasis>PersonahectorsOntology;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00015"/>00015 <emphasis role="keyword">using&#32;</emphasis>static&#32;GnossBase.GnossOCBase;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00016"/>00016 <emphasis role="keyword">using&#32;</emphasis>System.Globalization;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00017"/>00017 <emphasis role="keyword">using&#32;</emphasis>Gnoss.ApiWrapper.ApiModel;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00018"/>00018 <emphasis role="keyword">using&#32;</emphasis>SixLabors.ImageSharp.ColorSpaces;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00019"/>00019 <emphasis role="keyword">using&#32;</emphasis>System.Drawing;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00020"/>00020 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00021"/><link linkend="_class_pelicula_persistencia">00021</link> <emphasis role="keyword">public</emphasis>&#32;<emphasis role="keyword">class&#32;</emphasis><link linkend="_class_pelicula_persistencia">PeliculaPersistencia</link>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00022"/>00022 {
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00023"/>00023 &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;ResourceApi&#32;apiRecursos;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00024"/>00024 &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keywordtype">string</emphasis>&#32;ontologiaPelicula&#32;=&#32;<emphasis role="stringliteral">&quot;peliculahectors&quot;</emphasis>;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00025"/>00025 &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keywordtype">string</emphasis>&#32;ontologiaPersona&#32;=&#32;<emphasis role="stringliteral">&quot;personahectors&quot;</emphasis>;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00026"/>00026 &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keywordtype">string</emphasis>&#32;ontologiaGenero&#32;=&#32;<emphasis role="stringliteral">&quot;generohectors&quot;</emphasis>;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00031"/><link linkend="_class_pelicula_persistencia_1ae091a9ecce7daa20c0fd1b1bf43c9991">00031</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<link linkend="_class_pelicula_persistencia_1ae091a9ecce7daa20c0fd1b1bf43c9991">PeliculaPersistencia</link>(ResourceApi&#32;api)
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00032"/>00032 &#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00033"/>00033 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;this.apiRecursos&#32;=&#32;api;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00034"/>00034 &#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00035"/>00035 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00042"/><link linkend="_class_pelicula_persistencia_1abb72d6a98e2b4c543cdae403e4251c42">00042</link> &#32;&#32;&#32;&#32;<emphasis role="keyword">public</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;<link linkend="_class_pelicula_persistencia_1abb72d6a98e2b4c543cdae403e4251c42">CargarPeliculasDesdeJson</link>(<emphasis role="keywordtype">string</emphasis>&#32;rutaDirectorio)
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00043"/>00043 &#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00044"/>00044 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(var&#32;archivo&#32;<emphasis role="keywordflow">in</emphasis>&#32;Directory.GetFiles(rutaDirectorio,&#32;<emphasis role="stringliteral">&quot;*.json&quot;</emphasis>))<emphasis role="comment">//Para&#32;cada&#32;archivo&#32;json&#32;se&#32;craga&#32;a&#32;información.&#32;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00045"/>00045 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//ver&#32;referencia&#32;en&#32;csproj&#32;como&#32;he&#32;hecho&#32;copia&#32;siempre&#32;de&#32;los&#32;json&#32;al&#32;bin&#32;mediante&#32;código&#32;de&#32;copia&#32;siempre(&#32;Importante&#32;por&#32;que&#32;son&#32;muchos&#32;archivos)</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00046"/>00046 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00047"/>00047 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;contenidoJson&#32;=&#32;File.ReadAllText(archivo);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00048"/>00048 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;dynamic&#32;datosJson&#32;=&#32;JsonConvert.DeserializeObject(contenidoJson);<emphasis role="comment">//Deserializo&#32;los&#32;datos&#32;de&#32;los&#32;json&#32;usando&#32;la&#32;nuget&#32;de&#32;newton&#32;soft</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00049"/>00049 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00050"/>00050 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00051"/>00051 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00052"/>00052 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00053"/>00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mapeo&#32;de&#32;los&#32;datos&#32;JSON&#32;a&#32;la&#32;clase&#32;Movie</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Movie&#32;pelicula&#32;=&#32;MapearJsonAPelicula(datosJson);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00055"/>00055 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00056"/>00056 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00057"/>00057 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00058"/>00058 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Validar&#32;campos&#32;obligatorios</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ValidarCamposPelicula(pelicula);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00060"/>00060 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//pelicula.IdsSchema_genre&#32;=&#32;new&#32;List&lt;string&gt;();</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00063"/>00063 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//pelicula.IdsSchema_actor&#32;=&#32;new&#32;List&lt;string&gt;();</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//pelicula.IdsSchema_director&#32;=&#32;new&#32;List&lt;string&gt;();</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//pelicula.IdsSchema_author&#32;=&#32;new&#32;List&lt;string&gt;();</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00066"/>00066 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00067"/>00067 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00068"/>00068 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Primero,&#32;cargar&#32;géneros</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00069"/>00069 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;List&lt;string&gt;&#32;urisGeneros&#32;=&#32;VerificarOCrearGeneros(pelicula.IdsSchema_genre);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00070"/>00070 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00071"/>00071 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Segundo,&#32;cargar&#32;actores,&#32;directores,&#32;autores</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00072"/>00072 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;List&lt;string&gt;&#32;urisActores&#32;=&#32;VerificarOCrearPersonas(pelicula.IdsSchema_actor);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00073"/>00073 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;List&lt;string&gt;&#32;urisDirectores&#32;=&#32;VerificarOCrearPersonas(pelicula.IdsSchema_director);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00074"/>00074 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;List&lt;string&gt;&#32;urisAutores&#32;=&#32;VerificarOCrearPersonas(pelicula.IdsSchema_author);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00075"/>00075 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Agregar&#32;la&#32;película&#32;al&#32;grafo&#32;con&#32;todos&#32;los&#32;datos</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;AgregarPeliculaAGrafo(pelicula,&#32;urisGeneros,&#32;urisActores,&#32;urisDirectores,&#32;urisAutores);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00079"/>00079 &#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00080"/>00080 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00088"/>00088 &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;Movie&#32;MapearJsonAPelicula(dynamic&#32;datosJson)
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00089"/>00089 &#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00090"/>00090 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//Notar&#32;que&#32;si&#32;alguna&#32;etiqueta&#32;del&#32;json&#32;no&#32;aparece&#32;en&#32;algun&#32;ejemplo&#32;concreto&#32;este&#32;campor&#32;sera&#32;nulo&#32;,&#32;de&#32;ahñi&#32;los&#32;if&#32;de&#32;prevención&#32;de&#32;nulos.</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00091"/>00091 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Movie&#32;pelicula&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Movie();
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00092"/>00092 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Inicializar&#32;listas&#32;vacías</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_genre&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;List&lt;string&gt;();
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00094"/>00094 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_actor&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;List&lt;string&gt;();
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00095"/>00095 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_director&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;List&lt;string&gt;();
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00096"/>00096 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_author&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;List&lt;string&gt;();
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00097"/>00097 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00098"/>00098 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.Schema_name&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Dictionary&lt;LanguageEnum,&#32;string&gt;&#32;{&#32;{&#32;LanguageEnum.en,&#32;datosJson.Title.ToString()&#32;}&#32;};
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00099"/>00099 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00100"/>00100 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;s&#32;=&#32;datosJson.Released&#32;??&#32;<emphasis role="stringliteral">&quot;&#32;&quot;</emphasis>;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00101"/>00101 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;releasedDateString&#32;=&#32;s.ToString();&#32;<emphasis role="comment">//&#32;o&#32;&quot;texto&#32;inválido&quot;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00102"/>00102 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;DateTime&#32;releasedDate;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00103"/>00103 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00104"/>00104 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Intentamos&#32;parsear&#32;la&#32;fecha;&#32;si&#32;no&#32;es&#32;válida&#32;o&#32;es&#32;null,&#32;se&#32;usa&#32;una&#32;fecha&#32;por&#32;defecto.</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00105"/>00105 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!DateTime.TryParse(releasedDateString,&#32;out&#32;releasedDate))
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00106"/>00106 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00107"/>00107 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Usar&#32;una&#32;fecha&#32;por&#32;defecto&#32;(por&#32;ejemplo,&#32;el&#32;1&#32;de&#32;enero&#32;de&#32;800)</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;releasedDate&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;DateTime(800,&#32;1,&#32;1);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00109"/>00109 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00110"/>00110 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00111"/>00111 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//pelicula.Schema_datePublished&#32;=&#32;DateTime.Parse(datosJson.Released.ToString());</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00112"/>00112 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;s&#32;=&#32;datosJson.Runtime&#32;??&#32;<emphasis role="stringliteral">&quot;&#32;&quot;</emphasis>;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;var&#32;lista&#32;=&#32;s.Split(<emphasis role="charliteral">&apos;&#32;&apos;</emphasis>);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00114"/>00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">int</emphasis>&#32;i&#32;=&#32;0;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00115"/>00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;List&lt;int&gt;&#32;l2&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;List&lt;int&gt;();
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(var&#32;l&#32;<emphasis role="keywordflow">in</emphasis>&#32;lista)
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00117"/>00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00118"/>00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!<emphasis role="keywordtype">int</emphasis>.TryParse(l,&#32;out&#32;i))
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00119"/>00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00120"/>00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Usar&#32;una&#32;fecha&#32;por&#32;defecto&#32;(por&#32;ejemplo,&#32;el&#32;1&#32;de&#32;enero&#32;de&#32;800)</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00121"/>00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;l2.Add(0);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00122"/>00122 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00123"/>00123 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>&#32;{&#32;l2.Add(i);&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00124"/>00124 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00125"/>00125 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00126"/>00126 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00127"/>00127 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00128"/>00128 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.Schema_duration&#32;=&#32;l2;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00129"/>00129 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00130"/>00130 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00131"/>00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mapeo&#32;de&#32;géneros:&#32;obteniendo&#32;solo&#32;los&#32;nombres&#32;para&#32;luego&#32;referenciar</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_genre&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;List&lt;string&gt;();
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00133"/>00133 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!datosJson.Genre.Equals(<emphasis role="keyword">null</emphasis>))
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00134"/>00134 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00135"/>00135 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(var&#32;genero&#32;<emphasis role="keywordflow">in</emphasis>&#32;datosJson.Genre.ToString().Split(<emphasis role="charliteral">&apos;,&apos;</emphasis>))
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00136"/>00136 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00137"/>00137 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_genre.Add(genero.Trim());&#32;&#32;<emphasis role="comment">//&#32;Aquí&#32;guardamos&#32;los&#32;nombres&#32;de&#32;los&#32;géneros</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00138"/>00138 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00140"/>00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mapeo&#32;de&#32;actores:&#32;obteniendo&#32;solo&#32;los&#32;nombres&#32;para&#32;luego&#32;referenciar</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00141"/>00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_actor&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;List&lt;string&gt;();
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00142"/>00142 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!datosJson.Actors.Equals(&#32;<emphasis role="keyword">null</emphasis>))
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00143"/>00143 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00144"/>00144 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(var&#32;actor&#32;<emphasis role="keywordflow">in</emphasis>&#32;datosJson.Actors.ToString().Split(<emphasis role="charliteral">&apos;,&apos;</emphasis>))
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00145"/>00145 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00146"/>00146 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_actor.Add(actor.Trim());&#32;&#32;<emphasis role="comment">//&#32;Aquí&#32;guardamos&#32;los&#32;nombres&#32;de&#32;los&#32;actores</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00147"/>00147 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00148"/>00148 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00149"/>00149 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mapeo&#32;de&#32;directores:&#32;obteniendo&#32;solo&#32;los&#32;nombres&#32;para&#32;luego&#32;referenciar</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00150"/>00150 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_director&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;List&lt;string&gt;();
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00151"/>00151 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!datosJson.Director.Equals(&#32;<emphasis role="keyword">null</emphasis>))
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00152"/>00152 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00153"/>00153 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(var&#32;director&#32;<emphasis role="keywordflow">in</emphasis>&#32;datosJson.Director.ToString().Split(<emphasis role="charliteral">&apos;,&apos;</emphasis>))
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00154"/>00154 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00155"/>00155 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_author.Add(director.Trim());&#32;&#32;<emphasis role="comment">//&#32;Aquí&#32;guardamos&#32;los&#32;nombres&#32;de&#32;los&#32;directores</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00156"/>00156 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00157"/>00157 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00158"/>00158 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00159"/>00159 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mapeo&#32;de&#32;autores&#32;(escritores):&#32;obteniendo&#32;solo&#32;los&#32;nombres&#32;para&#32;luego&#32;referenciar</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00160"/>00160 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_author&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;List&lt;string&gt;();
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00161"/>00161 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(!datosJson.Writer.Equals(<emphasis role="keyword">null</emphasis>))
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00162"/>00162 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00163"/>00163 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(var&#32;autor&#32;<emphasis role="keywordflow">in</emphasis>&#32;datosJson.Writer.ToString().Split(<emphasis role="charliteral">&apos;,&apos;</emphasis>))
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00164"/>00164 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00165"/>00165 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_author.Add(autor.Trim());&#32;&#32;<emphasis role="comment">//&#32;Aquí&#32;guardamos&#32;los&#32;nombres&#32;de&#32;los&#32;autores</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00166"/>00166 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00167"/>00167 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00168"/>00168 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00169"/>00169 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00170"/>00170 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00171"/>00171 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(datosJson.Plot&#32;!=&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00172"/>00172 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00173"/>00173 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.Schema_description&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Dictionary&lt;LanguageEnum,&#32;string&gt;&#32;{&#32;{&#32;LanguageEnum.en,&#32;datosJson.Plot.ToString()&#32;}&#32;};
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00174"/>00174 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00175"/>00175 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(datosJson.Poster&#32;!=&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00176"/>00176 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00177"/>00177 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.Schema_image&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Dictionary&lt;LanguageEnum,&#32;string&gt;&#32;{&#32;{&#32;LanguageEnum.en,&#32;datosJson.Poster.ToString()&#32;}&#32;};
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00178"/>00178 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00179"/>00179 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(datosJson.Rated&#32;!=&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00180"/>00180 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00181"/>00181 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.Schema_contentRating&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Dictionary&lt;LanguageEnum,&#32;string&gt;&#32;{&#32;{&#32;LanguageEnum.en,&#32;datosJson.Rated.ToString()&#32;}&#32;};
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00182"/>00182 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00183"/>00183 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Mapeo&#32;de&#32;Ratings</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00184"/>00184 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.Schema_rating&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;List&lt;Rating&gt;();
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00185"/>00185 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(datosJson.Ratings&#32;!=&#32;<emphasis role="keyword">null</emphasis>)&#32;{&#32;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00186"/>00186 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(var&#32;valoracion&#32;<emphasis role="keywordflow">in</emphasis>&#32;datosJson.Ratings)
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00187"/>00187 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00188"/>00188 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00189"/>00189 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Rating&#32;valoracionPelicula&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Rating
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00190"/>00190 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00191"/>00191 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Schema_ratingValue&#32;=&#32;(float)(<link linkend="_class_pelicula_persistencia_1aa5ab35870b2dd47e4223fd6d36cb85a6">ParseRatingAPorcentaje</link>(valoracion.Value.ToString().Split(<emphasis role="charliteral">&apos;/&apos;</emphasis>)[0])),
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00192"/>00192 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Schema_ratingSource&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Dictionary&lt;LanguageEnum,&#32;string&gt;&#32;{&#32;{&#32;LanguageEnum.en,&#32;valoracion.Source.ToString()&#32;}&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00193"/>00193 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00194"/>00194 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.Schema_rating.Add(valoracionPelicula);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00195"/>00195 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00196"/>00196 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00197"/>00197 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;pelicula;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00198"/>00198 &#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00199"/>00199 &#32;&#32;&#32;&#32;<emphasis role="comment">//Una&#32;vez&#32;creada&#32;la&#32;película&#32;con&#32;las&#32;propiedades&#32;no&#32;relacionadas&#32;con&#32;otros&#32;OC&#32;validamos</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00204"/>00204 <emphasis role="comment"></emphasis>&#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;<emphasis role="keywordtype">void</emphasis>&#32;ValidarCamposPelicula(Movie&#32;pelicula)
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00205"/>00205 &#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00206"/>00206 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//&#32;Validaciones&#32;para&#32;asegurarse&#32;de&#32;que&#32;los&#32;campos&#32;obligatorios&#32;están&#32;presentes.</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00207"/>00207 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(pelicula.Schema_description&#32;==&#32;<emphasis role="keyword">null</emphasis>&#32;||&#32;!pelicula.Schema_description.Any())
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00208"/>00208 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00209"/>00209 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;apiRecursos.Log.Warn(<emphasis role="stringliteral">&quot;Descripción&#32;ausente.&#32;Se&#32;proporcionará&#32;una&#32;descripción&#32;predeterminada.&quot;</emphasis>);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00210"/>00210 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.Schema_description&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Dictionary&lt;LanguageEnum,&#32;string&gt;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00211"/>00211 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00212"/>00212 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;LanguageEnum.en,&#32;<emphasis role="stringliteral">&quot;Description&#32;not&#32;available&quot;</emphasis>&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00213"/>00213 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00214"/>00214 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00215"/>00215 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00216"/>00216 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(pelicula.Schema_contentRating&#32;==&#32;<emphasis role="keyword">null</emphasis>&#32;||&#32;!pelicula.Schema_contentRating.Any())
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00217"/>00217 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00218"/>00218 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;apiRecursos.Log.Warn(<emphasis role="stringliteral">&quot;Content&#32;rating&#32;ausente.&#32;Se&#32;proporcionará&#32;un&#32;rating&#32;predeterminado.&quot;</emphasis>);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00219"/>00219 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.Schema_contentRating&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Dictionary&lt;LanguageEnum,&#32;string&gt;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00220"/>00220 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00221"/>00221 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;LanguageEnum.en,&#32;<emphasis role="stringliteral">&quot;Rating&#32;not&#32;available&quot;</emphasis>&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00222"/>00222 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00223"/>00223 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00224"/>00224 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00225"/>00225 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(pelicula.Schema_name&#32;==&#32;<emphasis role="keyword">null</emphasis>&#32;||&#32;!pelicula.Schema_name.Any())
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00226"/>00226 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00227"/>00227 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;apiRecursos.Log.Warn(<emphasis role="stringliteral">&quot;Nombre&#32;de&#32;la&#32;película&#32;ausente.&#32;Se&#32;proporcionará&#32;un&#32;nombre&#32;predeterminado.&quot;</emphasis>);
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00228"/>00228 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.Schema_name&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;Dictionary&lt;LanguageEnum,&#32;string&gt;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00229"/>00229 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00230"/>00230 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{&#32;LanguageEnum.en,&#32;<emphasis role="stringliteral">&quot;Title&#32;not&#32;available&quot;</emphasis>&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00231"/>00231 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;};
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00232"/>00232 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00233"/>00233 &#32;&#32;&#32;&#32;}
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00234"/>00234 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00242"/>00242 &#32;&#32;&#32;&#32;<emphasis role="keyword">private</emphasis>&#32;List&lt;string&gt;&#32;VerificarOCrearPersonas(List&lt;string&gt;&#32;nombresPersonas)
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00243"/>00243 &#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00244"/>00244 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;List&lt;string&gt;&#32;uris&#32;=&#32;<emphasis role="keyword">new</emphasis>&#32;List&lt;string&gt;();
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00245"/>00245 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(nombresPersonas&#32;!=&#32;<emphasis role="keyword">null</emphasis>)
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00246"/>00246 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00247"/>00247 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">foreach</emphasis>&#32;(var&#32;nombrePersona&#32;<emphasis role="keywordflow">in</emphasis>&#32;nombresPersonas)
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00248"/>00248 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00249"/>00249 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;(<emphasis role="keywordtype">string</emphasis>.IsNullOrEmpty(nombrePersona))&#32;<emphasis role="keywordflow">continue</emphasis>;<emphasis role="comment">//si&#32;son&#32;comillas&#32;o&#32;vacio&#32;nos&#32;lo&#32;saltamos&#32;,&#32;para&#32;evitar&#32;persoanas&#32;sin&#32;nombre</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00250"/>00250 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00251"/>00251 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;SparqlObject&#32;resultado&#32;=&#32;<emphasis role="keyword">null</emphasis>;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00252"/>00252 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;uri&#32;=&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00253"/>00253 
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00254"/>00254 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;nombre&#32;=&#32;nombrePersona.Replace(<emphasis role="stringliteral">&quot;\&apos;&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;&#32;&#32;&quot;</emphasis>);<emphasis role="comment">//Metodo&#32;de&#32;control&#32;de&#32;apodos&#32;con&#32;&apos;&#32;o&#32;.&#32;para&#32;la&#32;consulta</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00255"/>00255 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;nombre&#32;=&#32;nombre.Replace(<emphasis role="stringliteral">&quot;.&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;&#32;&quot;</emphasis>);<emphasis role="comment">//el&#32;el&#32;punto</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00256"/>00256 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">string</emphasis>&#32;select&#32;=&#32;<emphasis role="keywordtype">string</emphasis>.Empty,&#32;where&#32;=&#32;<emphasis role="keywordtype">string</emphasis>.Empty;<emphasis role="comment">//consulta&#32;sparql&#32;para&#32;sacar&#32;persona&#32;por&#32;nombre&#32;parecido.</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00257"/>00257 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="comment">//nombrePersona.Replace(&quot;\&apos;&quot;,&#32;&quot;&#32;&#32;&quot;);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00258"/>00258 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;select&#32;+=&#32;$<emphasis role="stringliteral">@&quot;SELECT&#32;*&quot;</emphasis>;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00259"/>00259 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;where&#32;+=&#32;$<emphasis role="stringliteral">@&quot;&#32;WHERE&#32;{{&#32;&quot;</emphasis>;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00260"/>00260 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;where&#32;+=&#32;$<emphasis role="stringliteral">@&quot;?s&#32;?p&#32;?o.&quot;</emphasis>;
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00261"/>00261 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;where&#32;+=&#32;$<emphasis role="stringliteral">@&quot;FILTER(?o&#32;LIKE&#32;&apos;{nombrePersona.Replace(&quot;</emphasis>\<emphasis role="stringliteral">&apos;&quot;,&#32;&quot;&#32;&#32;&quot;)}&apos;</emphasis>)<emphasis role="stringliteral">&quot;;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00262"/>00262 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;where&#32;+=&#32;$@&quot;</emphasis>}}<emphasis role="stringliteral">&quot;;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00263"/>00263 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;resultado&#32;=&#32;apiRecursos.VirtuosoQuery(select,&#32;where,&#32;ontologiaPersona);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00264"/>00264 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00265"/>00265 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00266"/>00266 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00267"/>00267 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;if&#32;(resultado&#32;!=&#32;null&#32;&amp;&amp;&#32;resultado.results&#32;!=&#32;null&#32;&amp;&amp;&#32;resultado.results.bindings.Count&#32;&gt;&#32;0)//Si&#32;existe</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00268"/>00268 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00269"/>00269 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uri&#32;=&#32;resultado.results.bindings[0][&quot;</emphasis>s<emphasis role="stringliteral">&quot;].value;//Sacamos&#32;su&#32;uri</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00270"/>00270 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00271"/>00271 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;else&#32;//&#32;Si&#32;no&#32;existe&#32;lo&#32;creamos&#32;y&#32;sacamos&#32;su&#32;uri&#32;en&#32;el&#32;proceso.</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00272"/>00272 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00273"/>00273 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;apiRecursos.ChangeOntology(ontologiaPersona);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00274"/>00274 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Person&#32;nuevaPersona&#32;=&#32;new&#32;Person();</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00275"/>00275 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;//nuevaPersona.Schema_name.Add(LanguageEnum.en,&#32;nombrePersona);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00276"/>00276 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;nuevaPersona.Schema_name&#32;=&#32;new&#32;Dictionary&lt;LanguageEnum,&#32;string&gt;&#32;{&#32;{&#32;LanguageEnum.en,&#32;nombrePersona&#32;}&#32;};</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00277"/>00277 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ComplexOntologyResource&#32;recursoPersona&#32;=&#32;nuevaPersona.ToGnossApiResource(apiRecursos,&#32;new&#32;List&lt;string&gt;&#32;{&#32;&quot;</emphasis>Categoría&#32;1<emphasis role="stringliteral">&quot;&#32;},&#32;Guid.NewGuid(),&#32;Guid.NewGuid());</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00278"/>00278 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uri&#32;=&#32;apiRecursos.LoadComplexSemanticResource(recursoPersona,&#32;false);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00279"/>00279 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00280"/>00280 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00281"/>00281 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00282"/>00282 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00283"/>00283 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00284"/>00284 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00285"/>00285 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uris.Add(uri);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00286"/>00286 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00287"/>00287 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00288"/>00288 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;return&#32;uris;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00289"/>00289 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00290"/>00290 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00298"/>00298 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;private&#32;List&lt;string&gt;&#32;VerificarOCrearGeneros(List&lt;string&gt;&#32;nombresGeneros)</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00299"/>00299 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00300"/>00300 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;//Forma&#32;de&#32;proceder&#32;analogo&#32;al&#32;de&#32;las&#32;personas</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00301"/>00301 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;List&lt;string&gt;&#32;uris&#32;=&#32;new&#32;List&lt;string&gt;();</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00302"/>00302 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;if&#32;(nombresGeneros&#32;!=&#32;null)</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00303"/>00303 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00304"/>00304 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;foreach&#32;(var&#32;nombreGenero&#32;in&#32;nombresGeneros)</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00305"/>00305 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00306"/>00306 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;if&#32;(string.IsNullOrEmpty(nombreGenero))&#32;continue;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00307"/>00307 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00308"/>00308 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00309"/>00309 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;SparqlObject&#32;resultado&#32;=&#32;null;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00310"/>00310 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;string&#32;uri&#32;=&#32;&quot;</emphasis><emphasis role="stringliteral">&quot;;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00311"/>00311 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00312"/>00312 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00313"/>00313 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;string&#32;select&#32;=&#32;string.Empty,&#32;where&#32;=&#32;string.Empty;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00314"/>00314 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;select&#32;+=&#32;$@&quot;</emphasis>SELECT&#32;*<emphasis role="stringliteral">&quot;;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00315"/>00315 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;where&#32;+=&#32;$@&quot;</emphasis>&#32;WHERE&#32;{{&#32;<emphasis role="stringliteral">&quot;;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00316"/>00316 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;where&#32;+=&#32;$@&quot;</emphasis>?s&#32;?p&#32;?o.<emphasis role="stringliteral">&quot;;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00317"/>00317 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;where&#32;+=&#32;$@&quot;</emphasis>FILTER(?o&#32;LIKE&#32;<emphasis role="stringliteral">&apos;{nombreGenero}&apos;</emphasis>)<emphasis role="stringliteral">&quot;;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00318"/>00318 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;where&#32;+=&#32;$@&quot;</emphasis>}}<emphasis role="stringliteral">&quot;;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00319"/>00319 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;resultado&#32;=&#32;apiRecursos.VirtuosoQuery(select,&#32;where,&#32;ontologiaGenero);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00320"/>00320 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00321"/>00321 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00322"/>00322 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00323"/>00323 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;if&#32;(resultado&#32;!=&#32;null&#32;&amp;&amp;&#32;resultado.results&#32;!=&#32;null&#32;&amp;&amp;&#32;resultado.results.bindings.Count&#32;&gt;&#32;0)</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00324"/>00324 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00325"/>00325 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uri&#32;=&#32;resultado.results.bindings[0][&quot;</emphasis>s<emphasis role="stringliteral">&quot;].value;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00326"/>00326 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00327"/>00327 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;else</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00328"/>00328 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00329"/>00329 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;string&#32;identificador&#32;=&#32;Guid.NewGuid().ToString();</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00330"/>00330 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Genre&#32;nuevoGenero&#32;=&#32;new&#32;Genre(identificador);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00331"/>00331 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;nuevoGenero.Schema_name&#32;=&#32;nombreGenero;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00332"/>00332 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;apiRecursos.ChangeOntology(ontologiaGenero);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00333"/>00333 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00334"/>00334 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;SecondaryResource&#32;generoSR&#32;=&#32;nuevoGenero.ToGnossApiResource(apiRecursos,&#32;$&quot;</emphasis>Genre_{identificador}<emphasis role="stringliteral">&quot;);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00335"/>00335 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;apiRecursos.LoadSecondaryResource(generoSR);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00336"/>00336 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uri&#32;=&#32;nuevoGenero.GNOSSID;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00337"/>00337 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00338"/>00338 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;uris.Add(uri);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00339"/>00339 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00340"/>00340 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00341"/>00341 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;return&#32;uris;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00342"/>00342 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00343"/>00343 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00352"/>00352 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;private&#32;void&#32;AgregarPeliculaAGrafo(Movie&#32;pelicula,&#32;List&lt;string&gt;&#32;urisGeneros,&#32;List&lt;string&gt;&#32;urisActores,&#32;List&lt;string&gt;&#32;urisDirectores,&#32;List&lt;string&gt;&#32;urisAutores)</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00353"/>00353 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00354"/>00354 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_genre&#32;=&#32;urisGeneros;&#32;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00355"/>00355 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_actor&#32;=&#32;urisActores;&#32;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00356"/>00356 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_director&#32;=&#32;urisDirectores;&#32;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00357"/>00357 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;pelicula.IdsSchema_author&#32;=&#32;urisAutores;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00358"/>00358 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00359"/>00359 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;apiRecursos.ChangeOntology(ontologiaPelicula);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00360"/>00360 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;ComplexOntologyResource&#32;recursoPelicula&#32;=&#32;pelicula.ToGnossApiResource(apiRecursos,&#32;new&#32;List&lt;string&gt;&#32;{&#32;&quot;</emphasis>Categoría&#32;1<emphasis role="stringliteral">&quot;&#32;},&#32;Guid.NewGuid(),&#32;Guid.NewGuid());</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00361"/>00361 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;apiRecursos.LoadComplexSemanticResource(recursoPelicula);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00362"/>00362 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00363"/>00363 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00364"/>00364 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00365"/>00365 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00366"/>00366 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00367"/><link linkend="_class_pelicula_persistencia_1aa5ab35870b2dd47e4223fd6d36cb85a6">00367</link> <emphasis role="stringliteral">&#32;&#32;&#32;&#32;public&#32;static&#32;double&#32;ParseRatingAPorcentaje(string&#32;value)</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00368"/>00368 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00369"/>00369 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;value&#32;=&#32;value.Trim();</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00370"/>00370 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00371"/>00371 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;//&#32;Caso&#32;1:&#32;Ya&#32;es&#32;un&#32;porcentaje,&#32;como&#32;&quot;</emphasis>79%<emphasis role="stringliteral">&quot;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00372"/>00372 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;if&#32;(value.EndsWith(&quot;</emphasis>%<emphasis role="stringliteral">&quot;))</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00373"/>00373 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00374"/>00374 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;return&#32;double.Parse(value.Replace(&quot;</emphasis>%<emphasis role="stringliteral">&quot;,&#32;&quot;</emphasis><emphasis role="stringliteral">&quot;),&#32;CultureInfo.InvariantCulture);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00375"/>00375 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00376"/>00376 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00377"/>00377 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;//&#32;Caso&#32;2:&#32;Es&#32;una&#32;fracción,&#32;como&#32;&quot;</emphasis>8.3/10<emphasis role="stringliteral">&quot;&#32;o&#32;&quot;</emphasis>68/100<emphasis role="stringliteral">&quot;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00378"/>00378 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;if&#32;(value.Contains(&quot;</emphasis>/<emphasis role="stringliteral">&quot;))</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00379"/>00379 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00380"/>00380 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;var&#32;parts&#32;=&#32;value.Split(&apos;/&apos;);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00381"/>00381 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;if&#32;(parts.Length&#32;==&#32;2&#32;&amp;&amp;&#32;double.TryParse(parts[0],&#32;NumberStyles.Any,&#32;CultureInfo.InvariantCulture,&#32;out&#32;double&#32;numerator)</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00382"/>00382 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&amp;&amp;&#32;double.TryParse(parts[1],&#32;NumberStyles.Any,&#32;CultureInfo.InvariantCulture,&#32;out&#32;double&#32;denominator))</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00383"/>00383 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00384"/>00384 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;return&#32;(numerator&#32;/&#32;denominator)&#32;*&#32;100;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00385"/>00385 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00386"/>00386 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}else&#32;if&#32;(value.Contains(&quot;</emphasis>.<emphasis role="stringliteral">&quot;))</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00387"/>00387 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00388"/>00388 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;double.TryParse(value,&#32;NumberStyles.Any,&#32;CultureInfo.InvariantCulture,&#32;out&#32;double&#32;entero);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00389"/>00389 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;return&#32;entero&#32;*&#32;10;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00390"/>00390 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00391"/>00391 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;else</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00392"/>00392 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00393"/>00393 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;double.TryParse(value,&#32;NumberStyles.Any,&#32;CultureInfo.InvariantCulture,&#32;out&#32;double&#32;entero);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00394"/>00394 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;return&#32;entero;</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00395"/>00395 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00396"/>00396 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00397"/>00397 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00398"/>00398 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;throw&#32;new&#32;FormatException(&quot;</emphasis>Formato&#32;de&#32;rating&#32;no&#32;reconocido.<emphasis role="stringliteral">&quot;);</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00399"/>00399 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00400"/>00400 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00401"/>00401 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00402"/>00402 <emphasis role="stringliteral">}</emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00403"/>00403 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00404"/>00404 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00405"/>00405 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00406"/>00406 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00407"/>00407 <emphasis role="stringliteral"></emphasis>
+<anchor xml:id="__pelicula_persistencia_8cs_source_1l00408"/>00408 <emphasis role="stringliteral"></emphasis>
+</programlisting></section>
