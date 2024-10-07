@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Thesaurus>
+  <Categories>
+    <Category>
+      <Name>Siglo XX</Name>
+      <ID>century-sigloxx</ID>
+      <Category>
+        <Name>Nacidos en 1900s</Name>
+        <ID>year-1900s</ID>
+      </Category>
+      <Category>
+        <Name>Nacidos en 1910s</Name>
+        <ID>year-1910s</ID>
+      </Category>
+      <Category>
+        <Name>Nacidos en 1920s</Name>
+        <ID>year-1920s</ID>
+      </Category>
+      <Category>
+        <Name>Nacidos en 1930s</Name>
+        <ID>year-1930s</ID>
+      </Category>
+      <Category>
+        <Name>Nacidos en 1940s</Name>
+        <ID>year-1940s</ID>
+      </Category>
+      <Category>
+        <Name>Nacidos en 1950s</Name>
+        <ID>year-1950s</ID>
+      </Category>
+      <Category>
+        <Name>Nacidos en 1960s</Name>
+        <ID>year-1960s</ID>
+      </Category>
+      <Category>
+        <Name>Nacidos en 1970s</Name>
+        <ID>year-1970s</ID>
+      </Category>
+      <Category>
+        <Name>Nacidos en 1980s</Name>
+        <ID>year-1980s</ID>
+      </Category>
+      <Category>
+        <Name>Nacidos en 1990s</Name>
+        <ID>year-1990s</ID>
+      </Category>
+    </Category>
+    <Category>
+      <Name>Siglo XXI</Name>
+      <ID>century-sigloxxi</ID>
+      <Category>
+        <Name>Nacidos en 2000s</Name>
+        <ID>year-2000s</ID>
+      </Category>
+      <Category>
+        <Name>Nacidos en 2010s</Name>
+        <ID>year-2010s</ID>
+      </Category>
+    </Category>
+  </Categories>
+</Thesaurus>

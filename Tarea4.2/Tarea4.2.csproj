@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -10,14 +10,37 @@
 
   <ItemGroup>
     <PackageReference Include="GnossApiWrapper.NetCore" Version="6.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\clasesGeneradas\demo-gnoss-akademia-20-39.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+	
+
+
+	<ItemGroup>
     <None Update="Config\oAuth.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+	<None Update="datospeliculas\**\*.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</None>
+  
+    <None Update="Documents\EpocaThesaurus.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Documents\ESTRUCTURA_CATEGORIAS_COMPLETO.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Documents\ESTRUCTURA_CATEGORIAS_COMPLETO_MOD - Copia.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Documents\ESTRUCTURA_CATEGORIAS_COMPLETO_MOD_SIN.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Documents\PeliculaThesaurus.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

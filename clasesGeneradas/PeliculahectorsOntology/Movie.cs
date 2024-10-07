@@ -630,7 +630,7 @@ namespace PeliculahectorsOntology
 				AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Movie_{ResourceID}_{ArticleID}", "http://schema.org/rating", $"<{resourceAPI.GraphsUrl}items/Rating_{ResourceID}_{item0.ArticleID}>", list, " . ");
 				if(item0.Schema_ratingValue != null)
 				{
-					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Rating_{ResourceID}_{item0.ArticleID}", "http://schema.org/ratingValue",  $"{item0.Schema_ratingValue.Value.ToString()}", list, " . ");
+					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Rating_{ResourceID}_{item0.ArticleID}", "http://schema.org/ratingValue",  $"{item0.Schema_ratingValue.Value.ToString(new CultureInfo("en-US"))}", list, " . ");
 				}
 				if(item0.Schema_ratingSource != null)
 				{
@@ -814,7 +814,7 @@ namespace PeliculahectorsOntology
 				AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://schema.org/rating", $"<{resourceAPI.GraphsUrl}items/Rating_{ResourceID}_{item0.ArticleID}>", list, " . ");
 				if(item0.Schema_ratingValue != null)
 				{
-					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Rating_{ResourceID}_{item0.ArticleID}", "http://schema.org/ratingValue",  $"{item0.Schema_ratingValue.Value.ToString()}", list, " . ");
+					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Rating_{ResourceID}_{item0.ArticleID}", "http://schema.org/ratingValue",  $"{item0.Schema_ratingValue.Value.ToString(new CultureInfo("en-US"))}", list, " . ");
 				}
 				if(item0.Schema_ratingSource != null)
 				{
