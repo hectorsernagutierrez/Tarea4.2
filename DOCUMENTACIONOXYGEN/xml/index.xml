@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.7" xml:lang="en-US">
+  <compound refid="class_pelicula_persistencia" kind="class"><name>PeliculaPersistencia</name>
+    <member refid="class_pelicula_persistencia_1a6184ad33bb4a51d94cf8f98af78ed6f8" kind="variable"><name>apiRecursos</name></member>
+    <member refid="class_pelicula_persistencia_1a2b4944a1441f2fa10de5bda2620dc20e" kind="variable"><name>ontologiaPelicula</name></member>
+    <member refid="class_pelicula_persistencia_1a338eb560cc4f8001dc027cf955dd7cec" kind="variable"><name>ontologiaPersona</name></member>
+    <member refid="class_pelicula_persistencia_1aba3a4e7cf155f5c7d1499c145b2adb2b" kind="variable"><name>ontologiaGenero</name></member>
+    <member refid="class_pelicula_persistencia_1ae091a9ecce7daa20c0fd1b1bf43c9991" kind="function"><name>PeliculaPersistencia</name></member>
+    <member refid="class_pelicula_persistencia_1abb72d6a98e2b4c543cdae403e4251c42" kind="function"><name>CargarPeliculasDesdeJson</name></member>
+    <member refid="class_pelicula_persistencia_1afd756081911838e578fe5b301c570d49" kind="function"><name>MapearJsonAPelicula</name></member>
+    <member refid="class_pelicula_persistencia_1a2aba0258bae599d2490123d0f6860084" kind="function"><name>ValidarCamposPelicula</name></member>
+    <member refid="class_pelicula_persistencia_1a66a7d3997fbd96aa08fa2d9d056c3158" kind="function"><name>VerificarOCrearPersonas</name></member>
+    <member refid="class_pelicula_persistencia_1ae2f119d52413b786868cbcd192c47661" kind="function"><name>VerificarOCrearGeneros</name></member>
+    <member refid="class_pelicula_persistencia_1a5496529bb797c05ce45af2168456a3fa" kind="function"><name>AgregarPeliculaAGrafo</name></member>
+    <member refid="class_pelicula_persistencia_1aa5ab35870b2dd47e4223fd6d36cb85a6" kind="function"><name>ParseRatingAPorcentaje</name></member>
+  </compound>
+  <compound refid="namespace_generohectors_ontology" kind="namespace"><name>GenerohectorsOntology</name>
+  </compound>
+  <compound refid="namespace_gnoss_1_1_api_wrapper" kind="namespace"><name>Gnoss::ApiWrapper</name>
+  </compound>
+  <compound refid="namespace_gnoss_1_1_api_wrapper_1_1_api_model" kind="namespace"><name>Gnoss::ApiWrapper::ApiModel</name>
+  </compound>
+  <compound refid="namespace_gnoss_1_1_api_wrapper_1_1_model" kind="namespace"><name>Gnoss::ApiWrapper::Model</name>
+  </compound>
+  <compound refid="namespace_gnoss_base_1_1_gnoss_o_c_base" kind="namespace"><name>GnossBase::GnossOCBase</name>
+  </compound>
+  <compound refid="namespace_newtonsoft_1_1_json" kind="namespace"><name>Newtonsoft::Json</name>
+  </compound>
+  <compound refid="namespace_peliculahectors_ontology" kind="namespace"><name>PeliculahectorsOntology</name>
+  </compound>
+  <compound refid="namespace_personahectors_ontology" kind="namespace"><name>PersonahectorsOntology</name>
+  </compound>
+  <compound refid="namespace_six_labors_1_1_image_sharp_1_1_color_spaces" kind="namespace"><name>SixLabors::ImageSharp::ColorSpaces</name>
+  </compound>
+  <compound refid="namespacestatic" kind="namespace"><name>static</name>
+  </compound>
+  <compound refid="namespace_system_1_1_drawing" kind="namespace"><name>System::Drawing</name>
+  </compound>
+  <compound refid="namespace_system_1_1_globalization" kind="namespace"><name>System::Globalization</name>
+  </compound>
+  <compound refid="_pelicula_persistencia_8cs" kind="file"><name>PeliculaPersistencia.cs</name>
+  </compound>
+  <compound refid="dir_2779c68a3a93fd6fb133bed48d349918" kind="dir"><name>C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON</name>
+  </compound>
+  <compound refid="dir_dacf5b703db703ef9c89141d65d58503" kind="dir"><name>C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2</name>
+  </compound>
+</doxygenindex>

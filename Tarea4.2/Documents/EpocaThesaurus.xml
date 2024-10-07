@@ -1,61 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Thesaurus>
-  <Categories>
-    <Category>
-      <Name>Siglo XX</Name>
-      <ID>century-sigloxx</ID>
-      <Category>
-        <Name>Nacidos en 1900s</Name>
-        <ID>year-1900s</ID>
-      </Category>
-      <Category>
-        <Name>Nacidos en 1910s</Name>
-        <ID>year-1910s</ID>
-      </Category>
-      <Category>
-        <Name>Nacidos en 1920s</Name>
-        <ID>year-1920s</ID>
-      </Category>
-      <Category>
-        <Name>Nacidos en 1930s</Name>
-        <ID>year-1930s</ID>
-      </Category>
-      <Category>
-        <Name>Nacidos en 1940s</Name>
-        <ID>year-1940s</ID>
-      </Category>
-      <Category>
-        <Name>Nacidos en 1950s</Name>
-        <ID>year-1950s</ID>
-      </Category>
-      <Category>
-        <Name>Nacidos en 1960s</Name>
-        <ID>year-1960s</ID>
-      </Category>
-      <Category>
-        <Name>Nacidos en 1970s</Name>
-        <ID>year-1970s</ID>
-      </Category>
-      <Category>
-        <Name>Nacidos en 1980s</Name>
-        <ID>year-1980s</ID>
-      </Category>
-      <Category>
-        <Name>Nacidos en 1990s</Name>
-        <ID>year-1990s</ID>
-      </Category>
-    </Category>
-    <Category>
-      <Name>Siglo XXI</Name>
-      <ID>century-sigloxxi</ID>
-      <Category>
-        <Name>Nacidos en 2000s</Name>
-        <ID>year-2000s</ID>
-      </Category>
-      <Category>
-        <Name>Nacidos en 2010s</Name>
-        <ID>year-2010s</ID>
-      </Category>
-    </Category>
-  </Categories>
+	<Categories>
+		<!-- Siglo XIX -->
+		<Category>
+			<Name>Siglo XIX</Name>
+			<ID>siglo-xix-id</ID>
+			<Category>
+				<Name>1890</Name>
+				<ID>siglo-xix-1890-id</ID>
+			</Category>
+			<Category>
+				<Name>1880</Name>
+				<ID>siglo-xix-1880-id</ID>
+			</Category>
+			<Category>
+				<Name>1870</Name>
+				<ID>siglo-xix-1870-id</ID>
+			</Category>
+			<Category>
+				<Name>1860</Name>
+				<ID>siglo-xix-1860-id</ID>
+			</Category>
+			<Category>
+				<Name>1850</Name>
+				<ID>siglo-xix-1850-id</ID>
+			</Category>
+		</Category>
+
+		<!-- Siglo XX -->
+		<Category>
+			<Name>Siglo XX</Name>
+			<ID>siglo-xx-id</ID>
+			<Category>
+				<Name>1990</Name>
+				<ID>siglo-xx-1990-id</ID>
+			</Category>
+			<Category>
+				<Name>1980</Name>
+				<ID>siglo-xx-1980-id</ID>
+			</Category>
+			<Category>
+				<Name>1970</Name>
+				<ID>siglo-xx-1970-id</ID>
+			</Category>
+			<!-- Continúa con los años restantes -->
+		</Category>
+
+		<!-- Siglo XXI -->
+		<Category>
+			<Name>Siglo XXI</Name>
+			<ID>siglo-xxi-id</ID>
+			<Category>
+				<Name>2020</Name>
+				<ID>siglo-xxi-2020-id</ID>
+			</Category>
+			<Category>
+				<Name>2010</Name>
+				<ID>siglo-xxi-2010-id</ID>
+			</Category>
+			<Category>
+				<Name>2000</Name>
+				<ID>siglo-xxi-2000-id</ID>
+			</Category>
+		</Category>
+	</Categories>
 </Thesaurus>

@@ -1,4 +1,11 @@
-﻿
+﻿/*
+ * Autor:Hector Serna Gutierrez
+ * Tarea 4.2
+ * version 1.0
+ * Ultima mod 07/10/2024
+ * Contacto: hectorserna@gnos.com
+ * Documento Program
+ */
 using Gnoss.ApiWrapper.ApiModel;
 using Gnoss.ApiWrapper;
 using System.Xml;
@@ -9,7 +16,13 @@ using System.Reflection.Metadata;
 using PersonahectorsOntology;
 using static GnossBase.GnossOCBase;
 //using Tarea4._2.RepositorioPersistenciaJSON;
+// Este program modifica ligeramente el código dado por la formación Gnoss para el manejo de la api adaptandolo a 
+//Las necesidades del enunciado de la tarea 4.2 
+//El nombre de cada region es autoexplicativo respecto a lo que hace.
+// El código de la clase d ela capa de persitencia está documentado al no ser solamente meras modificaciones superficiales.
 
+//Conexión a la comunidad
+#region Conexion comunidad
 string pathOAuth = @"Config\oAuth.config";
 ResourceApi mResourceApi = new ResourceApi(Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));
 CommunityApi mCommunityApi = new CommunityApi(Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));
@@ -35,6 +48,8 @@ foreach (var guidUsuario in mCommunityApi.GetCommunityInfo().users)
     //KeyValuePair<Guid, Userlite> primerUsuario = mUserApi.GetUsersByIds(new List<Guid>() { guidUsuario }).FirstOrDefault();
     //string nombrePrimerUsuario = primerUsuario.Value.user_short_name;
 }
+
+#endregion Conexión comunidad
 //#region TesauroComunidad
 //mCommunityApi.Log.Debug("Inicio de la Carga del tesauro de la comunidad");
 //mCommunityApi.Log.Debug("**************************************");
@@ -61,50 +76,122 @@ foreach (var guidUsuario in mCommunityApi.GetCommunityInfo().users)
 
 //#endregion TesauroComunidad
 
+#region Carga del tesauro de una comunidad desde Archivo XML
 
-//#region TesauroComunidad
-//mCommunityApi.Log.Debug("Inicio de la Carga del tesauro de la comunidad");
-//mCommunityApi.Log.Debug("**************************************");
-
-//// Cargar el tesauro desde el nuevo archivo XML
-//XmlDocument xmlCategoriasPeli = new XmlDocument();
-//xmlCategorias.Load($"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}Documents\\PeliculaThesaurus.xml");
-
-//// Cargar el tesauro en la comunidad
-//mCommunityApi.CreateThesaurus(xmlCategoriasPeli.OuterXml);
-
-//// Obtener el Tesauro de Categorías de la comunidad (XML)
-// xml = mCommunityApi.GetThesaurus();
-
-//// Imprimir el Tesauro Cargado en consola
-//Console.WriteLine(xml);
-
-//mCommunityApi.Log.Debug("**************************************");
-//mCommunityApi.Log.Debug("Fin de la Carga del tesauro de comunidad (categorías)'");
-//#endregion TesauroComunidad
+mCommunityApi.Log.Debug("Inicio de la Carga del tesauro de la comunidad de cine/películas");
+mCommunityApi.Log.Debug("**************************************");
 
 
+// Leemos del XML la estructura del Tesauro (Categorías) de cine/películas desde el archivo "PeliculaThesaurus.xml"
+XmlDocument xmlCategorias = new XmlDocument();
+xmlCategorias.Load($"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}Documents\\PeliculaThesaurus.xml");  
 
-//#region TesauroComunidadEpocas
-//mCommunityApi.Log.Debug("Inicio de la Carga del tesauro de épocas por fecha de nacimiento");
-//mCommunityApi.Log.Debug("**************************************");
+// Crear el tesauro de la comunidad usando las categorías del cine/películas
+//mCommunityApi.CreateThesaurus(xmlCategorias.OuterXml);
 
-//// Cargar el tesauro desde el archivo XML de épocas
-//XmlDocument xmlEpocas = new XmlDocument();
-//xmlEpocas.Load($"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}Documents\\EpocaThesaurus.xml");
+// Obtenemos el Tesauro de Categorías de la comunidad (XML) para confirmación
+string xml = mCommunityApi.GetThesaurus();
 
-//// Cargar el tesauro en la comunidad
+// Imprimimos por Consola el Tesauro Cargado
+Console.WriteLine(xml);
+
+// Log de finalización
+mCommunityApi.Log.Debug("**************************************");
+mCommunityApi.Log.Debug("Fin de la Carga del tesauro de comunidad de cine/películas");
+
+#endregion Carga del tesauro de una comunidad desde Archivo XML
+
+
+
+
+
+#region TesauroComunidadEpocas
+mCommunityApi.Log.Debug("Inicio de la Carga del tesauro de épocas por fecha de nacimiento");
+mCommunityApi.Log.Debug("**************************************");
+
+// Cargar el tesauro desde el archivo XML de épocas
+XmlDocument xmlEpocas = new XmlDocument();
+xmlEpocas.Load($"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}Documents\\EpocaThesaurus.xml");
+
+// Cargar el tesauro en la comunidad
 //mCommunityApi.CreateThesaurus(xmlEpocas.OuterXml);
 
-//// Obtener el Tesauro de Categorías de la comunidad (XML)
-// xml = mCommunityApi.GetThesaurus();
 
-//// Imprimir el Tesauro Cargado en consola
-//Console.WriteLine(xml);
 
-//mCommunityApi.Log.Debug("**************************************");
-//mCommunityApi.Log.Debug("Fin de la Carga del tesauro de épocas");
-//#endregion TesauroComunidadEpocas
+mCommunityApi.Log.Debug("**************************************");
+mCommunityApi.Log.Debug("Fin de la Carga del tesauro de épocas");
+#endregion TesauroComunidadEpocas
+
+
+
+
+#region Carga de un tesauro semántico basado en siglos y años de nacimiento + Modificación y eliminación de categorías
+
+mCommunityApi.Log.Debug("Inicio de la Carga del tesauro semántico de épocas");
+mCommunityApi.Log.Debug("**************************************");
+
+// Diccionario de épocas (siglos) y los años dentro de cada siglo
+Dictionary<string, List<string>> d_siglo_anos = new();
+
+// Agregamos el Siglo XIX con años clave para actores, directores y guionistas
+d_siglo_anos.Add("Siglo XIX", new List<string>(){
+    "1890", "1880", "1870", "1860", "1850"
+});
+
+// Agregamos el Siglo XX con los años faltantes
+d_siglo_anos.Add("Siglo XX", new List<string>(){
+    "1990", "1980", "1970", "1960", "1950", "1940", "1930", "1920", "1910", "1900"
+});
+
+// Siglo XXI también con los años importantes
+d_siglo_anos.Add("Siglo XXI", new List<string>(){
+    "2020", "2010", "2000"
+});
+
+Thesaurus tesauroEpocas = new Thesaurus();
+
+mThesaurusApi.DeleteThesaurus("category", "tesauropersonahectors");
+
+tesauroEpocas.Source = "epoca";  // El concepto general sigue siendo "época"
+tesauroEpocas.Ontology = "tesauropersonahectors";
+tesauroEpocas.CommunityShortName = "demo-gnoss-akademia-20-39";
+tesauroEpocas.Collection = new Collection();
+tesauroEpocas.Collection.Member = new List<Concept>();
+tesauroEpocas.Collection.ScopeNote = new Dictionary<string, string>() { { "es", "Épocas y Años de actores, directores y guionistas" } };
+tesauroEpocas.Collection.Subject = "http://testing.gnoss.com/items/epoca";
+
+// Procesamos cada siglo y sus años asociados
+foreach (var sigloTesauroElement in d_siglo_anos.Keys)
+{
+    string nombreSigloParaURL = sigloTesauroElement.Replace(" ", "-").ToLower();
+    Concept sigloConcept = new Concept();
+    sigloConcept.PrefLabel = new Dictionary<string, string>() { { "es", sigloTesauroElement } };
+    sigloConcept.Symbol = "1";
+    sigloConcept.Identifier = $"epoca_siglo-{nombreSigloParaURL}-id"; // Propiedad "identifier" asociada al siglo
+    sigloConcept.Subject = $"epoca_siglo-{nombreSigloParaURL}-sj"; // Se forma la URI del siglo
+    sigloConcept.Narrower = new List<Concept>();
+
+    // Procesamos cada año dentro del siglo
+    foreach (var anoTesauroElement in d_siglo_anos[sigloTesauroElement])
+    {
+        string nombreAnoParaURL = anoTesauroElement.Replace(" ", "-").ToLower();
+        Concept anoConcept = new Concept();
+        anoConcept.PrefLabel = new Dictionary<string, string>() { { "es", anoTesauroElement } };
+        anoConcept.Symbol = "2";
+        anoConcept.Identifier = $"epoca_ano-{nombreSigloParaURL}-{nombreAnoParaURL}-id";
+        anoConcept.Subject = $"epoca_ano-{nombreSigloParaURL}-{nombreAnoParaURL}-sj";
+        sigloConcept.Narrower.Add(anoConcept); // Se asocian los años al siglo correspondiente
+    }
+
+    // Añadimos el concepto de siglo al tesauro
+    tesauroEpocas.Collection.Member.Add(sigloConcept);
+}
+
+
+mCommunityApi.Log.Debug("**************************************");
+mCommunityApi.Log.Debug("Fin de la Carga del tesauro de Epocas");
+
+#endregion Carga de un tesauro semántico de épocas y años de actores, directores y guionistas
 
 
 
