@@ -27,7 +27,7 @@ namespace PeliculahectorsOntology
 		{
 			mGNOSSID = pSemCmsModel.Entity.Uri;
 			mURL = pSemCmsModel.Properties.FirstOrDefault(p => p.PropertyValues.Any(prop => prop.DownloadUrl != null))?.FirstPropertyValue.DownloadUrl;
-			this.Schema_ratingValue = GetNumberIntPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/ratingValue"));
+			this.Schema_ratingValue = GetNumberFloatPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/ratingValue"));
 			this.Schema_ratingSource = new Dictionary<LanguageEnum,string>();
 			this.Schema_ratingSource.Add(idiomaUsuario , GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/ratingSource")));
 			
@@ -40,7 +40,7 @@ namespace PeliculahectorsOntology
 		[LABEL(LanguageEnum.es,"Valor de la valoración")]
 		[LABEL(LanguageEnum.en,"Rating value")]
 		[RDFProperty("http://schema.org/ratingValue")]
-		public  int? Schema_ratingValue { get; set;}
+		public  float? Schema_ratingValue { get; set;}
 
 		[LABEL(LanguageEnum.es,"Fuente de valoraciones")]
 		[LABEL(LanguageEnum.en,"Rating source")]
