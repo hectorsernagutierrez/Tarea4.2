@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.7" xml:lang="en-US">
+  <compounddef id="class_pelicula_persistencia" kind="class" language="C#" prot="public">
+    <compoundname>PeliculaPersistencia</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_pelicula_persistencia_1a6184ad33bb4a51d94cf8f98af78ed6f8" prot="private" static="no" mutable="no">
+        <type>ResourceApi</type>
+        <definition>ResourceApi PeliculaPersistencia.apiRecursos</definition>
+        <argsstring></argsstring>
+        <name>apiRecursos</name>
+        <qualifiedname>PeliculaPersistencia.apiRecursos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="23" column="25" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pelicula_persistencia_1a2b4944a1441f2fa10de5bda2620dc20e" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string PeliculaPersistencia.ontologiaPelicula</definition>
+        <argsstring></argsstring>
+        <name>ontologiaPelicula</name>
+        <qualifiedname>PeliculaPersistencia.ontologiaPelicula</qualifiedname>
+        <initializer>= &quot;peliculahectors&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="24" column="20" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pelicula_persistencia_1a338eb560cc4f8001dc027cf955dd7cec" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string PeliculaPersistencia.ontologiaPersona</definition>
+        <argsstring></argsstring>
+        <name>ontologiaPersona</name>
+        <qualifiedname>PeliculaPersistencia.ontologiaPersona</qualifiedname>
+        <initializer>= &quot;personahectors&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="25" column="20" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_pelicula_persistencia_1aba3a4e7cf155f5c7d1499c145b2adb2b" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string PeliculaPersistencia.ontologiaGenero</definition>
+        <argsstring></argsstring>
+        <name>ontologiaGenero</name>
+        <qualifiedname>PeliculaPersistencia.ontologiaGenero</qualifiedname>
+        <initializer>= &quot;generohectors&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="26" column="20" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_pelicula_persistencia_1ae091a9ecce7daa20c0fd1b1bf43c9991" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>PeliculaPersistencia.PeliculaPersistencia</definition>
+        <argsstring>(ResourceApi api)</argsstring>
+        <name>PeliculaPersistencia</name>
+        <qualifiedname>PeliculaPersistencia.PeliculaPersistencia</qualifiedname>
+        <param>
+          <type>ResourceApi</type>
+          <declname>api</declname>
+        </param>
+        <briefdescription>
+<para>Clase que recibe la api de recursos y genera la instancia dela clase de persistenci para trabajo con json de peliculas. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>api</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="31" column="12" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="31" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pelicula_persistencia_1abb72d6a98e2b4c543cdae403e4251c42" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PeliculaPersistencia.CargarPeliculasDesdeJson</definition>
+        <argsstring>(string rutaDirectorio)</argsstring>
+        <name>CargarPeliculasDesdeJson</name>
+        <qualifiedname>PeliculaPersistencia.CargarPeliculasDesdeJson</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>rutaDirectorio</declname>
+        </param>
+        <briefdescription>
+<para>Metodo principal que mapea la infromación de los json y refiere a metodos auxiliares para su carga en la api. Deserializa ,genera listas de los otros recursos relacionados y los crea o recoge meidante llamada a los metodos auxiliares. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rutaDirectorio</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="42" column="17" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="42" bodyend="79"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_pelicula_persistencia_1afd756081911838e578fe5b301c570d49" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Movie</type>
+        <definition>Movie PeliculaPersistencia.MapearJsonAPelicula</definition>
+        <argsstring>(dynamic datosJson)</argsstring>
+        <name>MapearJsonAPelicula</name>
+        <qualifiedname>PeliculaPersistencia.MapearJsonAPelicula</qualifiedname>
+        <param>
+          <type>dynamic</type>
+          <declname>datosJson</declname>
+        </param>
+        <briefdescription>
+<para>Asocia el mapa de deserialización de json a las propiedades del OC Pelicula Genera las listas de los otros OC ( string con sus nombres) devuelve la pelicula creada a falta de unir las relaciones a otros recursos Tambien aplica manejo de errores de datos almacenados en el json. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>datosJson</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Movie</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="88" column="19" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="88" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pelicula_persistencia_1a2aba0258bae599d2490123d0f6860084" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PeliculaPersistencia.ValidarCamposPelicula</definition>
+        <argsstring>(Movie pelicula)</argsstring>
+        <name>ValidarCamposPelicula</name>
+        <qualifiedname>PeliculaPersistencia.ValidarCamposPelicula</qualifiedname>
+        <param>
+          <type>Movie</type>
+          <declname>pelicula</declname>
+        </param>
+        <briefdescription>
+<para>Validación de que los datos obtenidos del json en aquellas propiedades no relacionales son correctas en cuanto a forma y formato. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pelicula</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="204" column="18" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="204" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pelicula_persistencia_1a66a7d3997fbd96aa08fa2d9d056c3158" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt; string &gt; PeliculaPersistencia.VerificarOCrearPersonas</definition>
+        <argsstring>(List&lt; string &gt; nombresPersonas)</argsstring>
+        <name>VerificarOCrearPersonas</name>
+        <qualifiedname>PeliculaPersistencia.VerificarOCrearPersonas</qualifiedname>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>nombresPersonas</declname>
+        </param>
+        <briefdescription>
+<para>Lista con strings de nombre de personas de las que se sacan del grafo las personas ya creadas o creas las que no aparezcan . Se devuelve la URI( el gnoss ID )de cada instancia de persona de la lista de nombres en el mismo orden. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nombresPersonas</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="242" column="18" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="242" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pelicula_persistencia_1ae2f119d52413b786868cbcd192c47661" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; string &gt;</type>
+        <definition>List&lt; string &gt; PeliculaPersistencia.VerificarOCrearGeneros</definition>
+        <argsstring>(List&lt; string &gt; nombresGeneros)</argsstring>
+        <name>VerificarOCrearGeneros</name>
+        <qualifiedname>PeliculaPersistencia.VerificarOCrearGeneros</qualifiedname>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>nombresGeneros</declname>
+        </param>
+        <briefdescription>
+<para>Lista con strings de nombre de generos de las que se sacan del grafo las generos ya creadas o creas las que no aparezcan . Se devuelve la URI( el gnoss ID )de cada instancia de genro de la lista de nombres en el mismo orden. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nombresGeneros</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="298" column="18" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="298" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="function" id="class_pelicula_persistencia_1a5496529bb797c05ce45af2168456a3fa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PeliculaPersistencia.AgregarPeliculaAGrafo</definition>
+        <argsstring>(Movie pelicula, List&lt; string &gt; urisGeneros, List&lt; string &gt; urisActores, List&lt; string &gt; urisDirectores, List&lt; string &gt; urisAutores)</argsstring>
+        <name>AgregarPeliculaAGrafo</name>
+        <qualifiedname>PeliculaPersistencia.AgregarPeliculaAGrafo</qualifiedname>
+        <param>
+          <type>Movie</type>
+          <declname>pelicula</declname>
+        </param>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>urisGeneros</declname>
+        </param>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>urisActores</declname>
+        </param>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>urisDirectores</declname>
+        </param>
+        <param>
+          <type>List&lt; string &gt;</type>
+          <declname>urisAutores</declname>
+        </param>
+        <briefdescription>
+<para>Toma la pelicula y las listas de Uris de OCs une toda la infromación y añade la pelicula al grafo. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pelicula</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>urisGeneros</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>urisActores</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>urisDirectores</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>urisAutores</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="352" column="18" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="352" bodyend="362"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_pelicula_persistencia_1aa5ab35870b2dd47e4223fd6d36cb85a6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double PeliculaPersistencia.ParseRatingAPorcentaje</definition>
+        <argsstring>(string value)</argsstring>
+        <name>ParseRatingAPorcentaje</name>
+        <qualifiedname>PeliculaPersistencia.ParseRatingAPorcentaje</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="367" column="26" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="367" bodyend="399"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="21" column="7" bodyfile="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" bodystart="22" bodyend="402"/>
+    <listofallmembers>
+      <member refid="class_pelicula_persistencia_1a5496529bb797c05ce45af2168456a3fa" prot="private" virt="non-virtual"><scope>PeliculaPersistencia</scope><name>AgregarPeliculaAGrafo</name></member>
+      <member refid="class_pelicula_persistencia_1a6184ad33bb4a51d94cf8f98af78ed6f8" prot="private" virt="non-virtual"><scope>PeliculaPersistencia</scope><name>apiRecursos</name></member>
+      <member refid="class_pelicula_persistencia_1abb72d6a98e2b4c543cdae403e4251c42" prot="public" virt="non-virtual"><scope>PeliculaPersistencia</scope><name>CargarPeliculasDesdeJson</name></member>
+      <member refid="class_pelicula_persistencia_1afd756081911838e578fe5b301c570d49" prot="private" virt="non-virtual"><scope>PeliculaPersistencia</scope><name>MapearJsonAPelicula</name></member>
+      <member refid="class_pelicula_persistencia_1aba3a4e7cf155f5c7d1499c145b2adb2b" prot="private" virt="non-virtual"><scope>PeliculaPersistencia</scope><name>ontologiaGenero</name></member>
+      <member refid="class_pelicula_persistencia_1a2b4944a1441f2fa10de5bda2620dc20e" prot="private" virt="non-virtual"><scope>PeliculaPersistencia</scope><name>ontologiaPelicula</name></member>
+      <member refid="class_pelicula_persistencia_1a338eb560cc4f8001dc027cf955dd7cec" prot="private" virt="non-virtual"><scope>PeliculaPersistencia</scope><name>ontologiaPersona</name></member>
+      <member refid="class_pelicula_persistencia_1aa5ab35870b2dd47e4223fd6d36cb85a6" prot="public" virt="non-virtual"><scope>PeliculaPersistencia</scope><name>ParseRatingAPorcentaje</name></member>
+      <member refid="class_pelicula_persistencia_1ae091a9ecce7daa20c0fd1b1bf43c9991" prot="public" virt="non-virtual"><scope>PeliculaPersistencia</scope><name>PeliculaPersistencia</name></member>
+      <member refid="class_pelicula_persistencia_1a2aba0258bae599d2490123d0f6860084" prot="private" virt="non-virtual"><scope>PeliculaPersistencia</scope><name>ValidarCamposPelicula</name></member>
+      <member refid="class_pelicula_persistencia_1ae2f119d52413b786868cbcd192c47661" prot="private" virt="non-virtual"><scope>PeliculaPersistencia</scope><name>VerificarOCrearGeneros</name></member>
+      <member refid="class_pelicula_persistencia_1a66a7d3997fbd96aa08fa2d9d056c3158" prot="private" virt="non-virtual"><scope>PeliculaPersistencia</scope><name>VerificarOCrearPersonas</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Thesaurus>
+	<Categories>
+		<!-- Siglo XIX -->
+		<Category>
+			<Name>Siglo XIX</Name>
+			<ID>siglo-xix-id</ID>
+			<Category>
+				<Name>1890</Name>
+				<ID>siglo-xix-1890-id</ID>
+			</Category>
+			<Category>
+				<Name>1880</Name>
+				<ID>siglo-xix-1880-id</ID>
+			</Category>
+			<Category>
+				<Name>1870</Name>
+				<ID>siglo-xix-1870-id</ID>
+			</Category>
+			<Category>
+				<Name>1860</Name>
+				<ID>siglo-xix-1860-id</ID>
+			</Category>
+			<Category>
+				<Name>1850</Name>
+				<ID>siglo-xix-1850-id</ID>
+			</Category>
+		</Category>
+
+		<!-- Siglo XX -->
+		<Category>
+			<Name>Siglo XX</Name>
+			<ID>siglo-xx-id</ID>
+			<Category>
+				<Name>1990</Name>
+				<ID>siglo-xx-1990-id</ID>
+			</Category>
+			<Category>
+				<Name>1980</Name>
+				<ID>siglo-xx-1980-id</ID>
+			</Category>
+			<Category>
+				<Name>1970</Name>
+				<ID>siglo-xx-1970-id</ID>
+			</Category>
+			<!-- Continúa con los años restantes -->
+		</Category>
+
+		<!-- Siglo XXI -->
+		<Category>
+			<Name>Siglo XXI</Name>
+			<ID>siglo-xxi-id</ID>
+			<Category>
+				<Name>2020</Name>
+				<ID>siglo-xxi-2020-id</ID>
+			</Category>
+			<Category>
+				<Name>2010</Name>
+				<ID>siglo-xxi-2010-id</ID>
+			</Category>
+			<Category>
+				<Name>2000</Name>
+				<ID>siglo-xxi-2000-id</ID>
+			</Category>
+		</Category>
+	</Categories>
+</Thesaurus>

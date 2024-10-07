@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_pelicula_persistencia" xml:lang="en-US">
+<title>PeliculaPersistencia Class Reference</title>
+<indexterm><primary>PeliculaPersistencia</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><link linkend="_class_pelicula_persistencia_1ae091a9ecce7daa20c0fd1b1bf43c9991">PeliculaPersistencia</link> (ResourceApi api)</para>
+
+<para>Clase que recibe la api de recursos y genera la instancia dela clase de persistenci para trabajo con json de peliculas. </para>
+</listitem>
+            <listitem><para>void <link linkend="_class_pelicula_persistencia_1abb72d6a98e2b4c543cdae403e4251c42">CargarPeliculasDesdeJson</link> (string rutaDirectorio)</para>
+
+<para>Metodo principal que mapea la infromación de los json y refiere a metodos auxiliares para su carga en la api. Deserializa ,genera listas de los otros recursos relacionados y los crea o recoge meidante llamada a los metodos auxiliares. </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Static Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>static double <link linkend="_class_pelicula_persistencia_1aa5ab35870b2dd47e4223fd6d36cb85a6">ParseRatingAPorcentaje</link> (string value)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+<para>
+Definition at line <link linkend="__pelicula_persistencia_8cs_source_1l00021">21</link> of file <link linkend="__pelicula_persistencia_8cs_source">PeliculaPersistencia.cs</link>.</para>
+</section>
+<section>
+<title>Constructor &amp; Destructor Documentation</title>
+<anchor xml:id="_class_pelicula_persistencia_1ae091a9ecce7daa20c0fd1b1bf43c9991"/><section>
+    <title>PeliculaPersistencia()</title>
+<indexterm><primary>PeliculaPersistencia</primary><secondary>PeliculaPersistencia</secondary></indexterm>
+<indexterm><primary>PeliculaPersistencia</primary><secondary>PeliculaPersistencia</secondary></indexterm>
+<para><computeroutput>PeliculaPersistencia.PeliculaPersistencia (ResourceApi api)</computeroutput></para><para>
+
+<para>Clase que recibe la api de recursos y genera la instancia dela clase de persistenci para trabajo con json de peliculas. </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>api</entry><entry></entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="__pelicula_persistencia_8cs_source_1l00031">31</link> of file <link linkend="__pelicula_persistencia_8cs_source">PeliculaPersistencia.cs</link>.</para>
+</section>
+</section>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_pelicula_persistencia_1abb72d6a98e2b4c543cdae403e4251c42"/><section>
+    <title>CargarPeliculasDesdeJson()</title>
+<indexterm><primary>CargarPeliculasDesdeJson</primary><secondary>PeliculaPersistencia</secondary></indexterm>
+<indexterm><primary>PeliculaPersistencia</primary><secondary>CargarPeliculasDesdeJson</secondary></indexterm>
+<para><computeroutput>void PeliculaPersistencia.CargarPeliculasDesdeJson (string rutaDirectorio)</computeroutput></para><para>
+
+<para>Metodo principal que mapea la infromación de los json y refiere a metodos auxiliares para su carga en la api. Deserializa ,genera listas de los otros recursos relacionados y los crea o recoge meidante llamada a los metodos auxiliares. </para>
+</para>
+
+<para>
+                <formalpara>
+                    <title>
+Parameters</title>
+                    <para>
+                    <table frame="all">
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+<entry>rutaDirectorio</entry><entry></entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                    </para>
+                </formalpara>
+                </para>
+<para>
+Definition at line <link linkend="__pelicula_persistencia_8cs_source_1l00042">42</link> of file <link linkend="__pelicula_persistencia_8cs_source">PeliculaPersistencia.cs</link>.</para>
+</section>
+<anchor xml:id="_class_pelicula_persistencia_1aa5ab35870b2dd47e4223fd6d36cb85a6"/><section>
+    <title>ParseRatingAPorcentaje()</title>
+<indexterm><primary>ParseRatingAPorcentaje</primary><secondary>PeliculaPersistencia</secondary></indexterm>
+<indexterm><primary>PeliculaPersistencia</primary><secondary>ParseRatingAPorcentaje</secondary></indexterm>
+<para><computeroutput>static double PeliculaPersistencia.ParseRatingAPorcentaje (string value)<computeroutput>[static]</computeroutput></computeroutput></para><para>
+Definition at line <link linkend="__pelicula_persistencia_8cs_source_1l00367">367</link> of file <link linkend="__pelicula_persistencia_8cs_source">PeliculaPersistencia.cs</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/<link linkend="__pelicula_persistencia_8cs">PeliculaPersistencia.cs</link></section>
+</section>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.7" xml:lang="en-US">
+  <compounddef id="namespace_six_labors_1_1_image_sharp_1_1_color_spaces" kind="namespace" language="C#">
+    <compoundname>SixLabors::ImageSharp::ColorSpaces</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs" line="18" column="39"/>
+  </compounddef>
+</doxygen>

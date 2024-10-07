@@ -1,0 +1,370 @@
+\doxysection{Pelicula\+Persistencia.\+cs}
+\label{_pelicula_persistencia_8cs_source}\index{C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs@{C:/Users/usuario/source/repos/hectorsernagutierrez/Tarea4.2/Tarea4.2/RepositorioPersistenciaJSON/PeliculaPersistencia.cs}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Autor:Hector\ Serna\ Gutierrez}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Tarea\ 4.2}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ version\ 1.0}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Ultima\ mod\ 07/10/2024}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Contacto:\ hectorserna@gnos.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ Documento:\ PeliculaPersistencia}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }GenerohectorsOntology;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ }Gnoss.ApiWrapper.Model;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ }Gnoss.ApiWrapper;}
+\DoxyCodeLine{00012\ \textcolor{keyword}{using\ }Newtonsoft.Json;}
+\DoxyCodeLine{00013\ \textcolor{keyword}{using\ }PeliculahectorsOntology;}
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ }PersonahectorsOntology;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ }static\ GnossBase.GnossOCBase;}
+\DoxyCodeLine{00016\ \textcolor{keyword}{using\ }System.Globalization;}
+\DoxyCodeLine{00017\ \textcolor{keyword}{using\ }Gnoss.ApiWrapper.ApiModel;}
+\DoxyCodeLine{00018\ \textcolor{keyword}{using\ }SixLabors.ImageSharp.ColorSpaces;}
+\DoxyCodeLine{00019\ \textcolor{keyword}{using\ }System.Drawing;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }PeliculaPersistencia}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{private}\ ResourceApi\ apiRecursos;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ ontologiaPelicula\ =\ \textcolor{stringliteral}{"{}peliculahectors"{}};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ ontologiaPersona\ =\ \textcolor{stringliteral}{"{}personahectors"{}};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ ontologiaGenero\ =\ \textcolor{stringliteral}{"{}generohectors"{}};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{public}\ PeliculaPersistencia(ResourceApi\ api)}
+\DoxyCodeLine{00032\ \ \ \ \ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ this.apiRecursos\ =\ api;}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ CargarPeliculasDesdeJson(\textcolor{keywordtype}{string}\ rutaDirectorio)}
+\DoxyCodeLine{00043\ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ archivo\ \textcolor{keywordflow}{in}\ Directory.GetFiles(rutaDirectorio,\ \textcolor{stringliteral}{"{}*.json"{}}))\textcolor{comment}{//Para\ cada\ archivo\ json\ se\ craga\ a\ información.\ }}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ver\ referencia\ en\ csproj\ como\ he\ hecho\ copia\ siempre\ de\ los\ json\ al\ bin\ mediante\ código\ de\ copia\ siempre(\ Importante\ por\ que\ son\ muchos\ archivos)}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ contenidoJson\ =\ File.ReadAllText(archivo);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ dynamic\ datosJson\ =\ JsonConvert.DeserializeObject(contenidoJson);\textcolor{comment}{//Deserializo\ los\ datos\ de\ los\ json\ usando\ la\ nuget\ de\ newton\ soft}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mapeo\ de\ los\ datos\ JSON\ a\ la\ clase\ Movie}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ Movie\ pelicula\ =\ MapearJsonAPelicula(datosJson);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validar\ campos\ obligatorios}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ ValidarCamposPelicula(pelicula);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//pelicula.IdsSchema\_genre\ =\ new\ List<string>();}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//pelicula.IdsSchema\_actor\ =\ new\ List<string>();}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//pelicula.IdsSchema\_director\ =\ new\ List<string>();}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//pelicula.IdsSchema\_author\ =\ new\ List<string>();}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Primero,\ cargar\ géneros}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ urisGeneros\ =\ VerificarOCrearGeneros(pelicula.IdsSchema\_genre);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Segundo,\ cargar\ actores,\ directores,\ autores}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ urisActores\ =\ VerificarOCrearPersonas(pelicula.IdsSchema\_actor);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ urisDirectores\ =\ VerificarOCrearPersonas(pelicula.IdsSchema\_director);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ List<string>\ urisAutores\ =\ VerificarOCrearPersonas(pelicula.IdsSchema\_author);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Agregar\ la\ película\ al\ grafo\ con\ todos\ los\ datos}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ AgregarPeliculaAGrafo(pelicula,\ urisGeneros,\ urisActores,\ urisDirectores,\ urisAutores);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{private}\ Movie\ MapearJsonAPelicula(dynamic\ datosJson)}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Notar\ que\ si\ alguna\ etiqueta\ del\ json\ no\ aparece\ en\ algun\ ejemplo\ concreto\ este\ campor\ sera\ nulo\ ,\ de\ ahñi\ los\ if\ de\ prevención\ de\ nulos.}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ Movie\ pelicula\ =\ \textcolor{keyword}{new}\ Movie();}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Inicializar\ listas\ vacías}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ pelicula.IdsSchema\_genre\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ pelicula.IdsSchema\_actor\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ pelicula.IdsSchema\_director\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ pelicula.IdsSchema\_author\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ pelicula.Schema\_name\ =\ \textcolor{keyword}{new}\ Dictionary<LanguageEnum,\ string>\ \{\ \{\ LanguageEnum.en,\ datosJson.Title.ToString()\ \}\ \};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ s\ =\ datosJson.Released\ ??\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ releasedDateString\ =\ s.ToString();\ \textcolor{comment}{//\ o\ "{}texto\ inválido"{}}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ DateTime\ releasedDate;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Intentamos\ parsear\ la\ fecha;\ si\ no\ es\ válida\ o\ es\ null,\ se\ usa\ una\ fecha\ por\ defecto.}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!DateTime.TryParse(releasedDateString,\ out\ releasedDate))}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Usar\ una\ fecha\ por\ defecto\ (por\ ejemplo,\ el\ 1\ de\ enero\ de\ 800)}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ releasedDate\ =\ \textcolor{keyword}{new}\ DateTime(800,\ 1,\ 1);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//pelicula.Schema\_datePublished\ =\ DateTime.Parse(datosJson.Released.ToString());}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ s\ =\ datosJson.Runtime\ ??\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ var\ lista\ =\ s.Split(\textcolor{charliteral}{'\ '});}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ List<int>\ l2\ =\ \textcolor{keyword}{new}\ List<int>();}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ l\ \textcolor{keywordflow}{in}\ lista)}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{int}.TryParse(l,\ out\ i))}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Usar\ una\ fecha\ por\ defecto\ (por\ ejemplo,\ el\ 1\ de\ enero\ de\ 800)}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ l2.Add(0);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{\ l2.Add(i);\ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ pelicula.Schema\_duration\ =\ l2;}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mapeo\ de\ géneros:\ obteniendo\ solo\ los\ nombres\ para\ luego\ referenciar}}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ pelicula.IdsSchema\_genre\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!datosJson.Genre.Equals(\textcolor{keyword}{null}))}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ genero\ \textcolor{keywordflow}{in}\ datosJson.Genre.ToString().Split(\textcolor{charliteral}{','}))}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pelicula.IdsSchema\_genre.Add(genero.Trim());\ \ \textcolor{comment}{//\ Aquí\ guardamos\ los\ nombres\ de\ los\ géneros}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mapeo\ de\ actores:\ obteniendo\ solo\ los\ nombres\ para\ luego\ referenciar}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ pelicula.IdsSchema\_actor\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!datosJson.Actors.Equals(\ \textcolor{keyword}{null}))}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ actor\ \textcolor{keywordflow}{in}\ datosJson.Actors.ToString().Split(\textcolor{charliteral}{','}))}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pelicula.IdsSchema\_actor.Add(actor.Trim());\ \ \textcolor{comment}{//\ Aquí\ guardamos\ los\ nombres\ de\ los\ actores}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mapeo\ de\ directores:\ obteniendo\ solo\ los\ nombres\ para\ luego\ referenciar}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ pelicula.IdsSchema\_director\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!datosJson.Director.Equals(\ \textcolor{keyword}{null}))}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ director\ \textcolor{keywordflow}{in}\ datosJson.Director.ToString().Split(\textcolor{charliteral}{','}))}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pelicula.IdsSchema\_author.Add(director.Trim());\ \ \textcolor{comment}{//\ Aquí\ guardamos\ los\ nombres\ de\ los\ directores}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mapeo\ de\ autores\ (escritores):\ obteniendo\ solo\ los\ nombres\ para\ luego\ referenciar}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ pelicula.IdsSchema\_author\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!datosJson.Writer.Equals(\textcolor{keyword}{null}))}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ autor\ \textcolor{keywordflow}{in}\ datosJson.Writer.ToString().Split(\textcolor{charliteral}{','}))}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pelicula.IdsSchema\_author.Add(autor.Trim());\ \ \textcolor{comment}{//\ Aquí\ guardamos\ los\ nombres\ de\ los\ autores}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (datosJson.Plot\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ pelicula.Schema\_description\ =\ \textcolor{keyword}{new}\ Dictionary<LanguageEnum,\ string>\ \{\ \{\ LanguageEnum.en,\ datosJson.Plot.ToString()\ \}\ \};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (datosJson.Poster\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ pelicula.Schema\_image\ =\ \textcolor{keyword}{new}\ Dictionary<LanguageEnum,\ string>\ \{\ \{\ LanguageEnum.en,\ datosJson.Poster.ToString()\ \}\ \};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (datosJson.Rated\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ pelicula.Schema\_contentRating\ =\ \textcolor{keyword}{new}\ Dictionary<LanguageEnum,\ string>\ \{\ \{\ LanguageEnum.en,\ datosJson.Rated.ToString()\ \}\ \};}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mapeo\ de\ Ratings}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ pelicula.Schema\_rating\ =\ \textcolor{keyword}{new}\ List<Rating>();}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (datosJson.Ratings\ !=\ \textcolor{keyword}{null})\ \{\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ valoracion\ \textcolor{keywordflow}{in}\ datosJson.Ratings)}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ Rating\ valoracionPelicula\ =\ \textcolor{keyword}{new}\ Rating}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Schema\_ratingValue\ =\ (float)(ParseRatingAPorcentaje(valoracion.Value.ToString().Split(\textcolor{charliteral}{'/'})[0])),}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Schema\_ratingSource\ =\ \textcolor{keyword}{new}\ Dictionary<LanguageEnum,\ string>\ \{\ \{\ LanguageEnum.en,\ valoracion.Source.ToString()\ \}\ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ pelicula.Schema\_rating.Add(valoracionPelicula);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pelicula;}
+\DoxyCodeLine{00198\ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{comment}{//Una\ vez\ creada\ la\ película\ con\ las\ propiedades\ no\ relacionadas\ con\ otros\ OC\ validamos}}
+\DoxyCodeLine{00204\ \textcolor{comment}{}\ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ ValidarCamposPelicula(Movie\ pelicula)}
+\DoxyCodeLine{00205\ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validaciones\ para\ asegurarse\ de\ que\ los\ campos\ obligatorios\ están\ presentes.}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pelicula.Schema\_description\ ==\ \textcolor{keyword}{null}\ ||\ !pelicula.Schema\_description.Any())}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ apiRecursos.Log.Warn(\textcolor{stringliteral}{"{}Descripción\ ausente.\ Se\ proporcionará\ una\ descripción\ predeterminada."{}});}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ pelicula.Schema\_description\ =\ \textcolor{keyword}{new}\ Dictionary<LanguageEnum,\ string>}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ LanguageEnum.en,\ \textcolor{stringliteral}{"{}Description\ not\ available"{}}\ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pelicula.Schema\_contentRating\ ==\ \textcolor{keyword}{null}\ ||\ !pelicula.Schema\_contentRating.Any())}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ apiRecursos.Log.Warn(\textcolor{stringliteral}{"{}Content\ rating\ ausente.\ Se\ proporcionará\ un\ rating\ predeterminado."{}});}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ pelicula.Schema\_contentRating\ =\ \textcolor{keyword}{new}\ Dictionary<LanguageEnum,\ string>}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ LanguageEnum.en,\ \textcolor{stringliteral}{"{}Rating\ not\ available"{}}\ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pelicula.Schema\_name\ ==\ \textcolor{keyword}{null}\ ||\ !pelicula.Schema\_name.Any())}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ apiRecursos.Log.Warn(\textcolor{stringliteral}{"{}Nombre\ de\ la\ película\ ausente.\ Se\ proporcionará\ un\ nombre\ predeterminado."{}});}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ pelicula.Schema\_name\ =\ \textcolor{keyword}{new}\ Dictionary<LanguageEnum,\ string>}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ LanguageEnum.en,\ \textcolor{stringliteral}{"{}Title\ not\ available"{}}\ \}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{private}\ List<string>\ VerificarOCrearPersonas(List<string>\ nombresPersonas)}
+\DoxyCodeLine{00243\ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ List<string>\ uris\ =\ \textcolor{keyword}{new}\ List<string>();}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (nombresPersonas\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (var\ nombrePersona\ \textcolor{keywordflow}{in}\ nombresPersonas)}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{string}.IsNullOrEmpty(nombrePersona))\ \textcolor{keywordflow}{continue};\textcolor{comment}{//si\ son\ comillas\ o\ vacio\ nos\ lo\ saltamos\ ,\ para\ evitar\ persoanas\ sin\ nombre}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SparqlObject\ resultado\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ uri\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ nombre\ =\ nombrePersona.Replace(\textcolor{stringliteral}{"{}\(\backslash\)'"{}},\ \textcolor{stringliteral}{"{}\ \ "{}});\textcolor{comment}{//Metodo\ de\ control\ de\ apodos\ con\ '\ o\ .\ para\ la\ consulta}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nombre\ =\ nombre.Replace(\textcolor{stringliteral}{"{}."{}},\ \textcolor{stringliteral}{"{}\ "{}});\textcolor{comment}{//el\ el\ punto}}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ select\ =\ \textcolor{keywordtype}{string}.Empty,\ where\ =\ \textcolor{keywordtype}{string}.Empty;\textcolor{comment}{//consulta\ sparql\ para\ sacar\ persona\ por\ nombre\ parecido.}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//nombrePersona.Replace("{}\(\backslash\)'"{},\ "{}\ \ "{});}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ select\ +=\ \$\textcolor{stringliteral}{@"{}SELECT\ *"{}};}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ where\ +=\ \$\textcolor{stringliteral}{@"{}\ WHERE\ \{\{\ "{}};}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ where\ +=\ \$\textcolor{stringliteral}{@"{}?s\ ?p\ ?o."{}};}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ where\ +=\ \$\textcolor{stringliteral}{@"{}FILTER(?o\ LIKE\ '\{nombrePersona.Replace("{}}\(\backslash\)\textcolor{stringliteral}{'"{},\ "{}\ \ "{})\}'})\textcolor{stringliteral}{"{};}}
+\DoxyCodeLine{00262\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ where\ +=\ \$@"{}}\}\}\textcolor{stringliteral}{"{};}}
+\DoxyCodeLine{00263\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resultado\ =\ apiRecursos.VirtuosoQuery(select,\ where,\ ontologiaPersona);}}
+\DoxyCodeLine{00264\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00265\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00266\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00267\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (resultado\ !=\ null\ \&\&\ resultado.results\ !=\ null\ \&\&\ resultado.results.bindings.Count\ >\ 0)//Si\ existe}}
+\DoxyCodeLine{00268\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00269\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uri\ =\ resultado.results.bindings[0]["{}}s\textcolor{stringliteral}{"{}].value;//Sacamos\ su\ uri}}
+\DoxyCodeLine{00270\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00271\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ else\ //\ Si\ no\ existe\ lo\ creamos\ y\ sacamos\ su\ uri\ en\ el\ proceso.}}
+\DoxyCodeLine{00272\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00273\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ apiRecursos.ChangeOntology(ontologiaPersona);}}
+\DoxyCodeLine{00274\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Person\ nuevaPersona\ =\ new\ Person();}}
+\DoxyCodeLine{00275\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //nuevaPersona.Schema\_name.Add(LanguageEnum.en,\ nombrePersona);}}
+\DoxyCodeLine{00276\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nuevaPersona.Schema\_name\ =\ new\ Dictionary<LanguageEnum,\ string>\ \{\ \{\ LanguageEnum.en,\ nombrePersona\ \}\ \};}}
+\DoxyCodeLine{00277\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ComplexOntologyResource\ recursoPersona\ =\ nuevaPersona.ToGnossApiResource(apiRecursos,\ new\ List<string>\ \{\ "{}}Categoría\ 1\textcolor{stringliteral}{"{}\ \},\ Guid.NewGuid(),\ Guid.NewGuid());}}
+\DoxyCodeLine{00278\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uri\ =\ apiRecursos.LoadComplexSemanticResource(recursoPersona,\ false);}}
+\DoxyCodeLine{00279\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00280\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00281\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00282\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00283\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00284\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00285\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uris.Add(uri);}}
+\DoxyCodeLine{00286\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00287\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00288\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ return\ uris;}}
+\DoxyCodeLine{00289\ \textcolor{stringliteral}{\ \ \ \ \}}}
+\DoxyCodeLine{00290\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00298\ \textcolor{stringliteral}{\ \ \ \ private\ List<string>\ VerificarOCrearGeneros(List<string>\ nombresGeneros)}}
+\DoxyCodeLine{00299\ \textcolor{stringliteral}{\ \ \ \ \{}}
+\DoxyCodeLine{00300\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ //Forma\ de\ proceder\ analogo\ al\ de\ las\ personas}}
+\DoxyCodeLine{00301\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ List<string>\ uris\ =\ new\ List<string>();}}
+\DoxyCodeLine{00302\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ if\ (nombresGeneros\ !=\ null)}}
+\DoxyCodeLine{00303\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00304\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ foreach\ (var\ nombreGenero\ in\ nombresGeneros)}}
+\DoxyCodeLine{00305\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00306\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (string.IsNullOrEmpty(nombreGenero))\ continue;}}
+\DoxyCodeLine{00307\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00308\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00309\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SparqlObject\ resultado\ =\ null;}}
+\DoxyCodeLine{00310\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ string\ uri\ =\ "{}}\textcolor{stringliteral}{"{};}}
+\DoxyCodeLine{00311\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00312\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00313\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ string\ select\ =\ string.Empty,\ where\ =\ string.Empty;}}
+\DoxyCodeLine{00314\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ select\ +=\ \$@"{}}SELECT\ *\textcolor{stringliteral}{"{};}}
+\DoxyCodeLine{00315\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ where\ +=\ \$@"{}}\ WHERE\ \{\{\ \textcolor{stringliteral}{"{};}}
+\DoxyCodeLine{00316\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ where\ +=\ \$@"{}}?s\ ?p\ ?o.\textcolor{stringliteral}{"{};}}
+\DoxyCodeLine{00317\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ where\ +=\ \$@"{}}FILTER(?o\ LIKE\ \textcolor{stringliteral}{'\{nombreGenero\}'})\textcolor{stringliteral}{"{};}}
+\DoxyCodeLine{00318\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ where\ +=\ \$@"{}}\}\}\textcolor{stringliteral}{"{};}}
+\DoxyCodeLine{00319\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resultado\ =\ apiRecursos.VirtuosoQuery(select,\ where,\ ontologiaGenero);}}
+\DoxyCodeLine{00320\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00321\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00322\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00323\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (resultado\ !=\ null\ \&\&\ resultado.results\ !=\ null\ \&\&\ resultado.results.bindings.Count\ >\ 0)}}
+\DoxyCodeLine{00324\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00325\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uri\ =\ resultado.results.bindings[0]["{}}s\textcolor{stringliteral}{"{}].value;}}
+\DoxyCodeLine{00326\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00327\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ else}}
+\DoxyCodeLine{00328\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00329\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ string\ identificador\ =\ Guid.NewGuid().ToString();}}
+\DoxyCodeLine{00330\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Genre\ nuevoGenero\ =\ new\ Genre(identificador);}}
+\DoxyCodeLine{00331\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nuevoGenero.Schema\_name\ =\ nombreGenero;}}
+\DoxyCodeLine{00332\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ apiRecursos.ChangeOntology(ontologiaGenero);}}
+\DoxyCodeLine{00333\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00334\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SecondaryResource\ generoSR\ =\ nuevoGenero.ToGnossApiResource(apiRecursos,\ \$"{}}Genre\_\{identificador\}\textcolor{stringliteral}{"{});}}
+\DoxyCodeLine{00335\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ apiRecursos.LoadSecondaryResource(generoSR);}}
+\DoxyCodeLine{00336\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uri\ =\ nuevoGenero.GNOSSID;}}
+\DoxyCodeLine{00337\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00338\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uris.Add(uri);}}
+\DoxyCodeLine{00339\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00340\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00341\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ return\ uris;}}
+\DoxyCodeLine{00342\ \textcolor{stringliteral}{\ \ \ \ \}}}
+\DoxyCodeLine{00343\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00352\ \textcolor{stringliteral}{\ \ \ \ private\ void\ AgregarPeliculaAGrafo(Movie\ pelicula,\ List<string>\ urisGeneros,\ List<string>\ urisActores,\ List<string>\ urisDirectores,\ List<string>\ urisAutores)}}
+\DoxyCodeLine{00353\ \textcolor{stringliteral}{\ \ \ \ \{}}
+\DoxyCodeLine{00354\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ pelicula.IdsSchema\_genre\ =\ urisGeneros;\ }}
+\DoxyCodeLine{00355\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ pelicula.IdsSchema\_actor\ =\ urisActores;\ }}
+\DoxyCodeLine{00356\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ pelicula.IdsSchema\_director\ =\ urisDirectores;\ }}
+\DoxyCodeLine{00357\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ pelicula.IdsSchema\_author\ =\ urisAutores;}}
+\DoxyCodeLine{00358\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00359\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ apiRecursos.ChangeOntology(ontologiaPelicula);}}
+\DoxyCodeLine{00360\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ ComplexOntologyResource\ recursoPelicula\ =\ pelicula.ToGnossApiResource(apiRecursos,\ new\ List<string>\ \{\ "{}}Categoría\ 1\textcolor{stringliteral}{"{}\ \},\ Guid.NewGuid(),\ Guid.NewGuid());}}
+\DoxyCodeLine{00361\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ apiRecursos.LoadComplexSemanticResource(recursoPelicula);}}
+\DoxyCodeLine{00362\ \textcolor{stringliteral}{\ \ \ \ \}}}
+\DoxyCodeLine{00363\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00364\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00365\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00366\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00367\ \textcolor{stringliteral}{\ \ \ \ public\ static\ double\ ParseRatingAPorcentaje(string\ value)}}
+\DoxyCodeLine{00368\ \textcolor{stringliteral}{\ \ \ \ \{}}
+\DoxyCodeLine{00369\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ value\ =\ value.Trim();}}
+\DoxyCodeLine{00370\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00371\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ //\ Caso\ 1:\ Ya\ es\ un\ porcentaje,\ como\ "{}}79\%\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00372\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ if\ (value.EndsWith("{}}\%\textcolor{stringliteral}{"{}))}}
+\DoxyCodeLine{00373\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00374\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ return\ double.Parse(value.Replace("{}}\%\textcolor{stringliteral}{"{},\ "{}}\textcolor{stringliteral}{"{}),\ CultureInfo.InvariantCulture);}}
+\DoxyCodeLine{00375\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00376\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00377\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ //\ Caso\ 2:\ Es\ una\ fracción,\ como\ "{}}8.3/10\textcolor{stringliteral}{"{}\ o\ "{}}68/100\textcolor{stringliteral}{"{}}}
+\DoxyCodeLine{00378\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ if\ (value.Contains("{}}/\textcolor{stringliteral}{"{}))}}
+\DoxyCodeLine{00379\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00380\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ var\ parts\ =\ value.Split('/');}}
+\DoxyCodeLine{00381\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ if\ (parts.Length\ ==\ 2\ \&\&\ double.TryParse(parts[0],\ NumberStyles.Any,\ CultureInfo.InvariantCulture,\ out\ double\ numerator)}}
+\DoxyCodeLine{00382\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ double.TryParse(parts[1],\ NumberStyles.Any,\ CultureInfo.InvariantCulture,\ out\ double\ denominator))}}
+\DoxyCodeLine{00383\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00384\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ (numerator\ /\ denominator)\ *\ 100;}}
+\DoxyCodeLine{00385\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00386\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \}else\ if\ (value.Contains("{}}.\textcolor{stringliteral}{"{}))}}
+\DoxyCodeLine{00387\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00388\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ double.TryParse(value,\ NumberStyles.Any,\ CultureInfo.InvariantCulture,\ out\ double\ entero);}}
+\DoxyCodeLine{00389\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ return\ entero\ *\ 10;}}
+\DoxyCodeLine{00390\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00391\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ else}}
+\DoxyCodeLine{00392\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00393\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ double.TryParse(value,\ NumberStyles.Any,\ CultureInfo.InvariantCulture,\ out\ double\ entero);}}
+\DoxyCodeLine{00394\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ return\ entero;}}
+\DoxyCodeLine{00395\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00396\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00397\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00398\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ throw\ new\ FormatException("{}}Formato\ de\ rating\ no\ reconocido.\textcolor{stringliteral}{"{});}}
+\DoxyCodeLine{00399\ \textcolor{stringliteral}{\ \ \ \ \}}}
+\DoxyCodeLine{00400\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00401\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00402\ \textcolor{stringliteral}{\}}}
+\DoxyCodeLine{00403\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00404\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00405\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00406\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00407\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{00408\ \textcolor{stringliteral}{}}
+
+\end{DoxyCode}

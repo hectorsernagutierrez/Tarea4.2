@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Thesaurus>
+	<Categories>
+		
+		<Category>
+			<Name>Categoría 1</Name>
+			<ID>categoria-1-id</ID>
+			<Category>
+				<Name>Subcategoría 1.1</Name>
+				<ID>subcategoria-1-1-id</ID>
+			</Category>
+		</Category>
+
+		
+		<Category>
+			<Name>Cinema</Name>
+			<ID>cinema-id</ID>
+		</Category>
+			<Category>
+				<Name>19th Century</Name>
+				<ID>19th-century-id</ID>
+				<Category>
+					<Name>1890</Name>
+					<ID>19th-century-1890-id</ID>
+				</Category>
+				<Category>
+					<Name>1880</Name>
+					<ID>19th-century-1880-id</ID>
+				</Category>
+				
+			</Category>
+
+			
+			<Category>
+				<Name>20th Century</Name>
+				<ID>20th-century-id</ID>
+				<Category>
+					<Name>1990</Name>
+					<ID>20th-century-1990-id</ID>
+				</Category>
+				<Category>
+					<Name>1980</Name>
+					<ID>20th-century-1980-id</ID>
+				</Category>
+				
+			</Category>
+
+			
+			<Category>
+				<Name>21st Century</Name>
+				<ID>21st-century-id</ID>
+				<Category>
+					<Name>2020</Name>
+					<ID>21st-century-2020-id</ID>
+				</Category>
+				<Category>
+					<Name>2010</Name>
+					<ID>21st-century-2010-id</ID>
+				</Category>
+			
+			</Category>
+
+			
+			<Category>
+				<Name>Genres</Name>
+				<ID>genres-id</ID>
+				<Category>
+					<Name>Action</Name>
+					<ID>genre-action-id</ID>
+				</Category>
+				<Category>
+					<Name>Drama</Name>
+					<ID>genre-drama-id</ID>
+				</Category>
+				<Category>
+					<Name>Comedy</Name>
+					<ID>genre-comedy-id</ID>
+				</Category>
+				<Category>
+					<Name>Horror</Name>
+					<ID>genre-horror-id</ID>
+				</Category>
+				<Category>
+					<Name>Science Fiction</Name>
+					<ID>genre-scifi-id</ID>
+				</Category>
+				
+			</Category>
+
+		
+			<Category>
+				<Name>Countries</Name>
+				<ID>countries-id</ID>
+				<Category>
+					<Name>United States</Name>
+					<ID>country-us-id</ID>
+				</Category>
+				<Category>
+					<Name>United Kingdom</Name>
+					<ID>country-uk-id</ID>
+				</Category>
+				<Category>
+					<Name>France</Name>
+					<ID>country-france-id</ID>
+				</Category>
+				<Category>
+					<Name>Germany</Name>
+					<ID>country-germany-id</ID>
+				</Category>
+				<Category>
+					<Name>Italy</Name>
+					<ID>country-italy-id</ID>
+				</Category>
+				<Category>
+					<Name>Spain</Name>
+					<ID>country-spain-id</ID>
+				</Category>
+				<Category>
+					<Name>Canada</Name>
+					<ID>country-canada-id</ID>
+				</Category>
+				<Category>
+					<Name>Japan</Name>
+					<ID>country-japan-id</ID>
+
+			</Category>
+
+		</Category>
+	</Categories>
+</Thesaurus>
+
