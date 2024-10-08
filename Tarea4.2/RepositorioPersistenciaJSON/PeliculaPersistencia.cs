@@ -395,7 +395,7 @@ public class PeliculaPersistencia
         }
 
 
-        throw new FormatException("Formato de rating no reconocido.");
+        throw new FormatException("Formato de rating no reconocido");
     }
 
 
